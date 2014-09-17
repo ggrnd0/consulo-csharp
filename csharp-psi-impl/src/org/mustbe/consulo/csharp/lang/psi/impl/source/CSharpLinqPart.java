@@ -16,12 +16,12 @@
 
 package org.mustbe.consulo.csharp.lang.psi.impl.source;
 
-import org.mustbe.consulo.dotnet.psi.DotNetElement;
+import org.mustbe.consulo.csharp.lang.psi.CSharpElement;
 
 /**
  * @author VISTALL
  * @since 04.01.14.
  */
-public interface CSharpLinqPart extends DotNetElement
+public interface CSharpLinqPart extends CSharpElement
 {
 }

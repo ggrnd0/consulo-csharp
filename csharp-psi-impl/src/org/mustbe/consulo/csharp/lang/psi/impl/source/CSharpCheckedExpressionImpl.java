@@ -2,6 +2,7 @@ package org.mustbe.consulo.csharp.lang.psi.impl.source;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.mustbe.consulo.csharp.lang.psi.CSharpCheckedExpression;
 import org.mustbe.consulo.csharp.lang.psi.CSharpElementVisitor;
 import org.mustbe.consulo.csharp.lang.psi.CSharpTokens;
 import org.mustbe.consulo.dotnet.psi.DotNetExpression;
@@ -12,7 +13,7 @@ import com.intellij.lang.ASTNode;
  * @author VISTALL
  * @since 11.02.14
  */
-public class CSharpCheckedExpressionImpl extends CSharpElementImpl implements DotNetExpression
+public class CSharpCheckedExpressionImpl extends CSharpElementImpl implements CSharpCheckedExpression
 {
 	public CSharpCheckedExpressionImpl(@NotNull ASTNode node)
 	{
@@ -22,12 +23,6 @@ public class CSharpCheckedExpressionImpl extends CSharpElementImpl implements Do
 	public boolean isUnchecked()
 	{
 		return findChildByType(CSharpTokens.UNCHECKED_KEYWORD) != null;
-	}
-
-	@Override
-	public void accept(@NotNull CSharpElementVisitor visitor)
-	{
-		visitor.visitCheckedExpression(this);
 	}
 
 	@NotNull
@@ -42,5 +37,11 @@ public class CSharpCheckedExpressionImpl extends CSharpElementImpl implements Do
 	public DotNetExpression getInnerExpression()
 	{
 		return findChildByClass(DotNetExpression.class);
+	}
+
+	@Override
+	public <P, R> R accept(CSharpElementVisitor<P, R> visitor, P p)
+	{
+		return visitor.visitCheckedExpression(this, p);
 	}
 }

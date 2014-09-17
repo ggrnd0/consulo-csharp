@@ -46,7 +46,7 @@ public class ObsoleteInspection extends LocalInspectionTool
 	@Override
 	public PsiElementVisitor buildVisitor(@NotNull final ProblemsHolder holder, boolean isOnTheFly)
 	{
-		return new CSharpElementVisitor()
+		return new CSharpElementVisitorVoid()
 		{
 			@Override
 			public void visitTypeDeclaration(CSharpTypeDeclaration declaration)

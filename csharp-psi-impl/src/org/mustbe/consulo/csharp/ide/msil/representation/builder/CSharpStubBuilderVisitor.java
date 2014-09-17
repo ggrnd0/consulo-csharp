@@ -43,7 +43,7 @@ import com.intellij.util.containers.ContainerUtil;
  * @author VISTALL
  * @since 02.06.14
  */
-public class CSharpStubBuilderVisitor extends CSharpElementVisitor
+public class CSharpStubBuilderVisitor extends CSharpElementVisitorVoid
 {
 	@NotNull
 	public static List<StubBlock> buildBlocks(PsiElement qualifiedElement)

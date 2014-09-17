@@ -17,7 +17,7 @@
 package org.mustbe.consulo.csharp.lang.psi.impl.source;
 
 import org.jetbrains.annotations.NotNull;
-import org.mustbe.consulo.csharp.lang.psi.CSharpElementVisitor;
+import org.mustbe.consulo.csharp.lang.psi.CSharpElementVisitorVoid;
 import org.mustbe.consulo.dotnet.psi.DotNetReferenceExpression;
 import org.mustbe.consulo.dotnet.psi.DotNetUserType;
 import org.mustbe.consulo.dotnet.resolve.DotNetPsiSearcher;
@@ -36,7 +36,7 @@ public class CSharpUserTypeImpl extends CSharpElementImpl implements DotNetUserT
 	}
 
 	@Override
-	public void accept(@NotNull CSharpElementVisitor visitor)
+	public void accept(@NotNull CSharpElementVisitorVoid visitor)
 	{
 		visitor.visitReferenceType(this);
 	}

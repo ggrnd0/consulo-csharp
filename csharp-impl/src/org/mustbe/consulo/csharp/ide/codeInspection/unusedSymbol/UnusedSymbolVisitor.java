@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.jetbrains.annotations.NotNull;
-import org.mustbe.consulo.csharp.lang.psi.CSharpElementVisitor;
+import org.mustbe.consulo.csharp.lang.psi.CSharpElementVisitorVoid;
 import org.mustbe.consulo.csharp.lang.psi.CSharpLocalVariable;
 import org.mustbe.consulo.csharp.lang.psi.impl.source.CSharpReferenceExpressionImpl;
 import org.mustbe.consulo.dotnet.psi.DotNetParameter;
@@ -16,7 +16,7 @@ import com.intellij.psi.PsiNameIdentifierOwner;
  * @author VISTALL
  * @since 20.05.14
  */
-public class UnusedSymbolVisitor extends CSharpElementVisitor
+public class UnusedSymbolVisitor extends CSharpElementVisitorVoid
 {
 	private Map<PsiNameIdentifierOwner, Boolean> myVariableStates = new HashMap<PsiNameIdentifierOwner, Boolean>();
 

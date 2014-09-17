@@ -18,7 +18,7 @@ package org.mustbe.consulo.csharp.lang.psi.impl.light;
 
 import org.jetbrains.annotations.NotNull;
 import org.mustbe.consulo.csharp.lang.CSharpLanguage;
-import org.mustbe.consulo.csharp.lang.psi.CSharpElementVisitor;
+import org.mustbe.consulo.csharp.lang.psi.CSharpElementVisitorVoid;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiElementVisitor;
 import com.intellij.psi.PsiFile;
@@ -66,9 +66,9 @@ public abstract class CSharpLightElement<S extends PsiElement> extends LightElem
 	@Override
 	public void accept(@NotNull PsiElementVisitor visitor)
 	{
-		if(visitor instanceof CSharpElementVisitor)
+		if(visitor instanceof CSharpElementVisitorVoid)
 		{
-			accept((CSharpElementVisitor)visitor);
+			accept((CSharpElementVisitorVoid)visitor);
 		}
 		else
 		{
@@ -76,7 +76,7 @@ public abstract class CSharpLightElement<S extends PsiElement> extends LightElem
 		}
 	}
 
-	public abstract void accept(@NotNull CSharpElementVisitor visitor);
+	public abstract void accept(@NotNull CSharpElementVisitorVoid visitor);
 
 	@Override
 	public String toString()

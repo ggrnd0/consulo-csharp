@@ -25,7 +25,7 @@ import java.lang.reflect.Modifier;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.mustbe.consulo.csharp.lang.psi.CSharpElementVisitor;
+import org.mustbe.consulo.csharp.lang.psi.CSharpElementVisitorVoid;
 import org.mustbe.consulo.csharp.lang.psi.impl.msil.CSharpTransform;
 import org.mustbe.consulo.csharp.lang.psi.impl.source.CSharpArrayTypeImpl;
 import org.mustbe.consulo.csharp.lang.psi.impl.source.CSharpNativeTypeImpl;
@@ -116,7 +116,7 @@ public class CSharpStubTypeInfoUtil
 			return CSharpStubErrorInfoType.INSTANCE;
 		}
 		val ref = new Ref<CSharpStubTypeInfo>();
-		t.accept(new CSharpElementVisitor()
+		t.accept(new CSharpElementVisitorVoid()
 		{
 			@Override
 			public void visitPointerType(CSharpPointerTypeImpl type)

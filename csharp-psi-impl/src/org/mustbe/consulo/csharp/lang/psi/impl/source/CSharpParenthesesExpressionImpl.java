@@ -19,6 +19,7 @@ package org.mustbe.consulo.csharp.lang.psi.impl.source;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.mustbe.consulo.csharp.lang.psi.CSharpElementVisitor;
+import org.mustbe.consulo.csharp.lang.psi.CSharpParenthesesExpression;
 import org.mustbe.consulo.dotnet.psi.DotNetExpression;
 import org.mustbe.consulo.dotnet.resolve.DotNetTypeRef;
 import com.intellij.lang.ASTNode;
@@ -27,7 +28,7 @@ import com.intellij.lang.ASTNode;
  * @author VISTALL
  * @since 30.12.13.
  */
-public class CSharpParenthesesExpressionImpl extends CSharpElementImpl implements DotNetExpression
+public class CSharpParenthesesExpressionImpl extends CSharpElementImpl implements CSharpParenthesesExpression
 {
 	public CSharpParenthesesExpressionImpl(@NotNull ASTNode node)
 	{
@@ -41,9 +42,9 @@ public class CSharpParenthesesExpressionImpl extends CSharpElementImpl implement
 	}
 
 	@Override
-	public void accept(@NotNull CSharpElementVisitor visitor)
+	public <P, R> R accept(CSharpElementVisitor<P, R> visitor, P p)
 	{
-		visitor.visitParenthesesExpression(this);
+		return visitor.visitParenthesesExpression(this, p);
 	}
 
 	@NotNull

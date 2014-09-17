@@ -21,7 +21,7 @@ import java.util.List;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.mustbe.consulo.csharp.lang.psi.CSharpElementVisitor;
+import org.mustbe.consulo.csharp.lang.psi.CSharpElementVisitorVoid;
 import org.mustbe.consulo.csharp.lang.psi.CSharpFieldDeclaration;
 import org.mustbe.consulo.csharp.lang.psi.CSharpModifier;
 import org.mustbe.consulo.dotnet.psi.DotNetModifier;
@@ -116,7 +116,7 @@ public class CSharpLightFieldDeclarationBuilder extends CSharpLightVariableBuild
 	}
 
 	@Override
-	public void accept(@NotNull CSharpElementVisitor visitor)
+	public void accept(@NotNull CSharpElementVisitorVoid visitor)
 	{
 		visitor.visitFieldDeclaration(this);
 	}

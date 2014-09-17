@@ -29,16 +29,16 @@ import com.intellij.psi.PsiElementVisitor;
  * @author VISTALL
  * @since 28.11.13.
  */
-public class CSharpElementVisitor extends PsiElementVisitor
+public class CSharpElementVisitorVoid extends PsiElementVisitor implements CSharpElementVisitor<Void, Void>
 {
-	public static final CSharpElementVisitor EMPTY = new CSharpElementVisitor();
+	public static final CSharpElementVisitorVoid EMPTY = new CSharpElementVisitorVoid();
 
 	public void visitCSharpFile(CSharpFileImpl file)
 	{
 		visitFile(file);
 	}
 
-	public void visitUsingNamespaceList(CSharpUsingListImpl list)
+	public void visitUsingNamespaceList(CSharpUsingNamespaceListImpl list)
 	{
 		visitElement(list);
 	}

@@ -18,9 +18,9 @@ package org.mustbe.consulo.csharp.lang.psi.impl.source;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.mustbe.consulo.csharp.lang.psi.CSharpAnonymMethodExpression;
 import org.mustbe.consulo.csharp.lang.psi.CSharpElementVisitor;
 import org.mustbe.consulo.csharp.lang.psi.impl.source.resolve.type.CSharpLambdaTypeRef;
-import org.mustbe.consulo.dotnet.psi.DotNetExpression;
 import org.mustbe.consulo.dotnet.psi.DotNetParameter;
 import org.mustbe.consulo.dotnet.psi.DotNetParameterList;
 import org.mustbe.consulo.dotnet.resolve.DotNetTypeRef;
@@ -33,7 +33,7 @@ import com.intellij.psi.scope.PsiScopeProcessor;
  * @author VISTALL
  * @since 19.01.14
  */
-public class CSharpAnonymMethodExpressionImpl extends CSharpElementImpl implements DotNetExpression
+public class CSharpAnonymMethodExpressionImpl extends CSharpElementImpl implements CSharpAnonymMethodExpression
 {
 	public CSharpAnonymMethodExpressionImpl(@NotNull ASTNode node)
 	{
@@ -54,9 +54,9 @@ public class CSharpAnonymMethodExpressionImpl extends CSharpElementImpl implemen
 	}
 
 	@Override
-	public void accept(@NotNull CSharpElementVisitor visitor)
+	public <P, R> R accept(CSharpElementVisitor<P, R> visitor, P p)
 	{
-		visitor.visitAnonymMethod(this);
+		return visitor.visitAnonymMethod(this, p);
 	}
 
 	@Override

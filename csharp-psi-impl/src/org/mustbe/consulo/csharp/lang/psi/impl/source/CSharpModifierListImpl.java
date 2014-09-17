@@ -78,9 +78,9 @@ public class CSharpModifierListImpl extends CSharpElementImpl implements DotNetM
 	}
 
 	@Override
-	public void accept(@NotNull CSharpElementVisitor visitor)
+	public <P, R> R accept(CSharpElementVisitor<P, R> visitor, P p)
 	{
-		visitor.visitModifierList(this);
+		return visitor.visitModifierList(this, p);
 	}
 
 	@NotNull

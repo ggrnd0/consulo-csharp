@@ -18,10 +18,10 @@ package org.mustbe.consulo.csharp.lang.psi.impl.source;
 
 import org.jetbrains.annotations.NotNull;
 import org.mustbe.consulo.csharp.lang.psi.CSharpElementVisitor;
+import org.mustbe.consulo.csharp.lang.psi.CSharpSizeOfExpression;
 import org.mustbe.consulo.csharp.lang.psi.impl.msil.CSharpTransform;
 import org.mustbe.consulo.dotnet.DotNetTypes;
 import org.mustbe.consulo.dotnet.lang.psi.impl.source.resolve.type.DotNetTypeRefByQName;
-import org.mustbe.consulo.dotnet.psi.DotNetExpression;
 import org.mustbe.consulo.dotnet.resolve.DotNetTypeRef;
 import com.intellij.lang.ASTNode;
 
@@ -29,7 +29,7 @@ import com.intellij.lang.ASTNode;
  * @author VISTALL
  * @since 06.01.14.
  */
-public class CSharpSizeOfExpressionImpl extends CSharpElementImpl implements DotNetExpression
+public class CSharpSizeOfExpressionImpl extends CSharpElementImpl implements CSharpSizeOfExpression
 {
 	public CSharpSizeOfExpressionImpl(@NotNull ASTNode node)
 	{
@@ -37,9 +37,9 @@ public class CSharpSizeOfExpressionImpl extends CSharpElementImpl implements Dot
 	}
 
 	@Override
-	public void accept(@NotNull CSharpElementVisitor visitor)
+	public <P, R> R accept(CSharpElementVisitor<P, R> visitor, P p)
 	{
-		visitor.visitSizeOfExpression(this);
+		return visitor.visitSizeOfExpression(this, p);
 	}
 
 	@NotNull

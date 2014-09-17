@@ -27,7 +27,7 @@ import org.mustbe.consulo.csharp.ide.codeInsight.CSharpCodeInsightSettings;
 import org.mustbe.consulo.csharp.lang.psi.CSharpFileFactory;
 import org.mustbe.consulo.csharp.lang.psi.impl.source.CSharpFileImpl;
 import org.mustbe.consulo.csharp.lang.psi.impl.source.CSharpReferenceExpressionImpl;
-import org.mustbe.consulo.csharp.lang.psi.impl.source.CSharpUsingListImpl;
+import org.mustbe.consulo.csharp.lang.psi.impl.source.CSharpUsingNamespaceListImpl;
 import org.mustbe.consulo.csharp.lang.psi.impl.stub.index.TypeByQNameIndex;
 import org.mustbe.consulo.dotnet.DotNetBundle;
 import org.mustbe.consulo.dotnet.module.roots.DotNetLibraryOrderEntryImpl;
@@ -85,7 +85,7 @@ public class AddUsingAction implements QuestionAction
 		PsiFile containingFile = myRef.getContainingFile();
 		for(PsiElement psiElement : containingFile.getChildren())
 		{
-			if(psiElement instanceof CSharpUsingListImpl)
+			if(psiElement instanceof CSharpUsingNamespaceListImpl)
 			{
 				return psiElement;
 			}
@@ -186,9 +186,9 @@ public class AddUsingAction implements QuestionAction
 	{
 		PsiElement elementForBeforeAdd = getElementForBeforeAdd();
 
-		if(elementForBeforeAdd instanceof CSharpUsingListImpl)
+		if(elementForBeforeAdd instanceof CSharpUsingNamespaceListImpl)
 		{
-			((CSharpUsingListImpl) elementForBeforeAdd).addUsing(qName);
+			((CSharpUsingNamespaceListImpl) elementForBeforeAdd).addUsing(qName);
 		}
 		else if(elementForBeforeAdd instanceof CSharpFileImpl)
 		{
@@ -198,7 +198,7 @@ public class AddUsingAction implements QuestionAction
 
 			assert firstChild != null;
 
-			CSharpUsingListImpl usingStatement = CSharpFileFactory.createUsingList(myProject, qName);
+			CSharpUsingNamespaceListImpl usingStatement = CSharpFileFactory.createUsingList(myProject, qName);
 
 			PsiElement usingStatementNew = elementForBeforeAdd.addBefore(usingStatement, firstChild);
 

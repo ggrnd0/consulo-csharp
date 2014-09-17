@@ -17,6 +17,7 @@
 package org.mustbe.consulo.csharp.lang.psi.impl.source;
 
 import org.jetbrains.annotations.NotNull;
+import org.mustbe.consulo.csharp.lang.psi.CSharpElement;
 import org.mustbe.consulo.csharp.lang.psi.CSharpElementVisitor;
 import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import com.intellij.lang.ASTNode;
@@ -29,7 +30,7 @@ import com.intellij.psi.search.GlobalSearchScope;
  * @author VISTALL
  * @since 28.11.13.
  */
-public abstract class CSharpElementImpl extends ASTWrapperPsiElement
+public abstract class CSharpElementImpl extends ASTWrapperPsiElement implements CSharpElement
 {
 	public CSharpElementImpl(@NotNull ASTNode node)
 	{
@@ -54,13 +55,11 @@ public abstract class CSharpElementImpl extends ASTWrapperPsiElement
 	{
 		if(visitor instanceof CSharpElementVisitor)
 		{
-			accept((CSharpElementVisitor)visitor);
+			accept((CSharpElementVisitor)visitor, null);
 		}
 		else
 		{
 			super.accept(visitor);
 		}
 	}
-
-	public abstract void accept(@NotNull CSharpElementVisitor visitor);
 }

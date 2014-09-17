@@ -14,11 +14,10 @@
  * limitations under the License.
  */
 
-package org.mustbe.consulo.csharp.lang.psi.impl.source;
+package org.mustbe.consulo.csharp.lang.psi;
 
 import org.consulo.lombok.annotations.ArrayFactoryFields;
 import org.jetbrains.annotations.Nullable;
-import org.mustbe.consulo.dotnet.psi.DotNetElement;
 import com.intellij.psi.PsiElement;
 
 /**
@@ -26,7 +25,7 @@ import com.intellij.psi.PsiElement;
  * @since 11.02.14
  */
 @ArrayFactoryFields
-public interface CSharpUsingListChild extends DotNetElement
+public interface CSharpUsingListChild extends CSharpElement
 {
 	@Nullable
 	PsiElement getReferenceElement();

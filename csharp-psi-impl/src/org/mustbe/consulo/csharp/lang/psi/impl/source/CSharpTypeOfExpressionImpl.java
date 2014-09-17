@@ -18,10 +18,10 @@ package org.mustbe.consulo.csharp.lang.psi.impl.source;
 
 import org.jetbrains.annotations.NotNull;
 import org.mustbe.consulo.csharp.lang.psi.CSharpElementVisitor;
+import org.mustbe.consulo.csharp.lang.psi.CSharpTypeOfExpression;
 import org.mustbe.consulo.csharp.lang.psi.impl.msil.CSharpTransform;
 import org.mustbe.consulo.dotnet.DotNetTypes;
 import org.mustbe.consulo.dotnet.lang.psi.impl.source.resolve.type.DotNetTypeRefByQName;
-import org.mustbe.consulo.dotnet.psi.DotNetExpression;
 import org.mustbe.consulo.dotnet.resolve.DotNetTypeRef;
 import com.intellij.lang.ASTNode;
 
@@ -29,17 +29,11 @@ import com.intellij.lang.ASTNode;
  * @author VISTALL
  * @since 17.12.13.
  */
-public class CSharpTypeOfExpressionImpl extends CSharpElementImpl implements DotNetExpression
+public class CSharpTypeOfExpressionImpl extends CSharpElementImpl implements CSharpTypeOfExpression
 {
 	public CSharpTypeOfExpressionImpl(@NotNull ASTNode node)
 	{
 		super(node);
-	}
-
-	@Override
-	public void accept(@NotNull CSharpElementVisitor visitor)
-	{
-		visitor.visitTypeOfExpression(this);
 	}
 
 	@NotNull
@@ -47,5 +41,11 @@ public class CSharpTypeOfExpressionImpl extends CSharpElementImpl implements Dot
 	public DotNetTypeRef toTypeRef(boolean resolveFromParent)
 	{
 		return new DotNetTypeRefByQName(DotNetTypes.System.Type, CSharpTransform.INSTANCE);
+	}
+
+	@Override
+	public <P, R> R accept(CSharpElementVisitor<P, R> visitor, P p)
+	{
+		return visitor.visitTypeOfExpression(this, p);
 	}
 }

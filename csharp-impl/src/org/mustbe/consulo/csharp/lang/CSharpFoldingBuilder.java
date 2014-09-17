@@ -29,8 +29,8 @@ import org.mustbe.consulo.csharp.lang.psi.CSharpTokens;
 import org.mustbe.consulo.csharp.lang.psi.CSharpTokensImpl;
 import org.mustbe.consulo.csharp.lang.psi.CSharpTypeDeclaration;
 import org.mustbe.consulo.csharp.lang.psi.impl.source.CSharpBlockStatementImpl;
-import org.mustbe.consulo.csharp.lang.psi.impl.source.CSharpUsingListChild;
-import org.mustbe.consulo.csharp.lang.psi.impl.source.CSharpUsingListImpl;
+import org.mustbe.consulo.csharp.lang.psi.CSharpUsingListChild;
+import org.mustbe.consulo.csharp.lang.psi.impl.source.CSharpUsingNamespaceListImpl;
 import org.mustbe.consulo.dotnet.psi.DotNetLikeMethodDeclaration;
 import com.intellij.codeInsight.folding.CodeFoldingSettings;
 import com.intellij.lang.ASTNode;
@@ -86,7 +86,7 @@ public class CSharpFoldingBuilder implements FoldingBuilder
 			}
 
 			@Override
-			public void visitUsingNamespaceList(CSharpUsingListImpl list)
+			public void visitUsingNamespaceList(CSharpUsingNamespaceListImpl list)
 			{
 				CSharpUsingListChild[] statements = list.getStatements();
 				if(statements.length <= 1)
@@ -201,7 +201,7 @@ public class CSharpFoldingBuilder implements FoldingBuilder
 	public String getPlaceholderText(@NotNull ASTNode astNode)
 	{
 		PsiElement psi = astNode.getPsi();
-		if(psi instanceof CSharpUsingListImpl)
+		if(psi instanceof CSharpUsingNamespaceListImpl)
 		{
 			return "...";
 		}
@@ -233,7 +233,7 @@ public class CSharpFoldingBuilder implements FoldingBuilder
 	public boolean isCollapsedByDefault(@NotNull ASTNode astNode)
 	{
 		PsiElement psi = astNode.getPsi();
-		if(psi instanceof CSharpUsingListImpl)
+		if(psi instanceof CSharpUsingNamespaceListImpl)
 		{
 			return true;
 		}

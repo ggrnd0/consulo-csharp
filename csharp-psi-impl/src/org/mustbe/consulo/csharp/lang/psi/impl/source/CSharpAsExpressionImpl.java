@@ -18,9 +18,9 @@ package org.mustbe.consulo.csharp.lang.psi.impl.source;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.mustbe.consulo.csharp.lang.psi.CSharpAsExpression;
 import org.mustbe.consulo.csharp.lang.psi.CSharpElementVisitor;
 import org.mustbe.consulo.csharp.lang.psi.CSharpTokens;
-import org.mustbe.consulo.dotnet.psi.DotNetExpression;
 import org.mustbe.consulo.dotnet.psi.DotNetType;
 import org.mustbe.consulo.dotnet.resolve.DotNetTypeRef;
 import com.intellij.lang.ASTNode;
@@ -30,7 +30,7 @@ import com.intellij.psi.PsiElement;
  * @author VISTALL
  * @since 04.01.14.
  */
-public class CSharpAsExpressionImpl extends CSharpElementImpl implements DotNetExpression
+public class CSharpAsExpressionImpl extends CSharpElementImpl implements CSharpAsExpression
 {
 	public CSharpAsExpressionImpl(@NotNull ASTNode node)
 	{
@@ -49,12 +49,6 @@ public class CSharpAsExpressionImpl extends CSharpElementImpl implements DotNetE
 		return findNotNullChildByType(CSharpTokens.AS_KEYWORD);
 	}
 
-	@Override
-	public void accept(@NotNull CSharpElementVisitor visitor)
-	{
-		visitor.visitAsExpression(this);
-	}
-
 	@NotNull
 	@Override
 	public DotNetTypeRef toTypeRef(boolean resolveFromParent)
@@ -65,5 +59,11 @@ public class CSharpAsExpressionImpl extends CSharpElementImpl implements DotNetE
 			return DotNetTypeRef.ERROR_TYPE;
 		}
 		return type.toTypeRef();
+	}
+
+	@Override
+	public <P, R> R accept(CSharpElementVisitor<P, R> visitor, P p)
+	{
+		return visitor.visitAsExpression(this, p);
 	}
 }

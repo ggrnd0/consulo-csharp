@@ -18,15 +18,15 @@ package org.mustbe.consulo.csharp.lang.psi.impl.source;
 
 import org.jetbrains.annotations.NotNull;
 import org.mustbe.consulo.csharp.lang.psi.CSharpElementVisitor;
+import org.mustbe.consulo.csharp.lang.psi.CSharpExpressionStatement;
 import org.mustbe.consulo.dotnet.psi.DotNetExpression;
-import org.mustbe.consulo.dotnet.psi.DotNetStatement;
 import com.intellij.lang.ASTNode;
 
 /**
  * @author VISTALL
  * @since 16.12.13.
  */
-public class CSharpExpressionStatementImpl extends CSharpElementImpl implements DotNetStatement
+public class CSharpExpressionStatementImpl extends CSharpElementImpl implements CSharpExpressionStatement
 {
 	public CSharpExpressionStatementImpl(@NotNull ASTNode node)
 	{
@@ -39,8 +39,8 @@ public class CSharpExpressionStatementImpl extends CSharpElementImpl implements 
 	}
 
 	@Override
-	public void accept(@NotNull CSharpElementVisitor visitor)
+	public <P, R> R accept(CSharpElementVisitor<P, R> visitor, P p)
 	{
-		visitor.visitExpressionStatement(this);
+		return visitor.visitExpressionStatement(this, p);
 	}
 }

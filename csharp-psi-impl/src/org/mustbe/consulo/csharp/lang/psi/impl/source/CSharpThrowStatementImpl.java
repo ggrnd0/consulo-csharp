@@ -19,21 +19,22 @@ package org.mustbe.consulo.csharp.lang.psi.impl.source;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.mustbe.consulo.csharp.lang.psi.CSharpElementVisitor;
+import org.mustbe.consulo.csharp.lang.psi.CSharpThrowStatement;
 import org.mustbe.consulo.dotnet.psi.DotNetExpression;
-import org.mustbe.consulo.dotnet.psi.DotNetStatement;
 import com.intellij.lang.ASTNode;
 
 /**
  * @author VISTALL
  * @since 17.01.14
  */
-public class CSharpThrowStatementImpl extends CSharpElementImpl implements DotNetStatement
+public class CSharpThrowStatementImpl extends CSharpElementImpl implements CSharpThrowStatement
 {
 	public CSharpThrowStatementImpl(@NotNull ASTNode node)
 	{
 		super(node);
 	}
 
+	@Override
 	@Nullable
 	public DotNetExpression getExpression()
 	{
@@ -41,8 +42,8 @@ public class CSharpThrowStatementImpl extends CSharpElementImpl implements DotNe
 	}
 
 	@Override
-	public void accept(@NotNull CSharpElementVisitor visitor)
+	public <P, R> R accept(CSharpElementVisitor<P, R> visitor, P p)
 	{
-		visitor.visitThrowStatement(this);
+		return visitor.visitThrowStatement(this, p);
 	}
 }

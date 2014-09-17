@@ -18,14 +18,14 @@ package org.mustbe.consulo.csharp.lang.psi.impl.source;
 
 import org.jetbrains.annotations.NotNull;
 import org.mustbe.consulo.csharp.lang.psi.CSharpElementVisitor;
-import org.mustbe.consulo.dotnet.psi.DotNetStatement;
+import org.mustbe.consulo.csharp.lang.psi.CSharpYieldStatement;
 import com.intellij.lang.ASTNode;
 
 /**
  * @author VISTALL
  * @since 30.12.13.
  */
-public class CSharpYieldStatementImpl extends CSharpElementImpl implements DotNetStatement
+public class CSharpYieldStatementImpl extends CSharpElementImpl implements CSharpYieldStatement
 {
 	public CSharpYieldStatementImpl(@NotNull ASTNode node)
 	{
@@ -33,8 +33,8 @@ public class CSharpYieldStatementImpl extends CSharpElementImpl implements DotNe
 	}
 
 	@Override
-	public void accept(@NotNull CSharpElementVisitor visitor)
+	public <P, R> R accept(CSharpElementVisitor<P, R> visitor, P p)
 	{
-		visitor.visitYieldStatement(this);
+		return visitor.visitYieldStatement(this, p);
 	}
 }

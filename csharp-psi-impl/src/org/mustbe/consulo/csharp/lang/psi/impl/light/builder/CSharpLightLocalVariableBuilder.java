@@ -17,7 +17,7 @@
 package org.mustbe.consulo.csharp.lang.psi.impl.light.builder;
 
 import org.jetbrains.annotations.NotNull;
-import org.mustbe.consulo.csharp.lang.psi.CSharpElementVisitor;
+import org.mustbe.consulo.csharp.lang.psi.CSharpElementVisitorVoid;
 import org.mustbe.consulo.csharp.lang.psi.CSharpLocalVariable;
 import com.intellij.openapi.project.Project;
 import com.intellij.psi.PsiElement;
@@ -39,7 +39,7 @@ public class CSharpLightLocalVariableBuilder extends CSharpLightVariableBuilder<
 	}
 
 	@Override
-	public void accept(@NotNull CSharpElementVisitor visitor)
+	public void accept(@NotNull CSharpElementVisitorVoid visitor)
 	{
 		visitor.visitLocalVariable(this);
 	}

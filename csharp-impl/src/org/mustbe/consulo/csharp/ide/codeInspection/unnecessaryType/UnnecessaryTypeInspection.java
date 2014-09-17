@@ -17,7 +17,7 @@
 package org.mustbe.consulo.csharp.ide.codeInspection.unnecessaryType;
 
 import org.jetbrains.annotations.NotNull;
-import org.mustbe.consulo.csharp.lang.psi.CSharpElementVisitor;
+import org.mustbe.consulo.csharp.lang.psi.CSharpElementVisitorVoid;
 import org.mustbe.consulo.csharp.lang.psi.CSharpFileFactory;
 import org.mustbe.consulo.csharp.lang.psi.CSharpLocalVariable;
 import org.mustbe.consulo.csharp.lang.psi.CSharpLocalVariableDeclarationStatement;
@@ -98,10 +98,10 @@ public class UnnecessaryTypeInspection extends LocalInspectionTool
 		CSharpLanguageVersion languageVersion = CSharpModuleUtil.findLanguageVersion(holder.getFile());
 		if(!languageVersion.isAtLeast(CSharpLanguageVersion._3_0))
 		{
-			return CSharpElementVisitor.EMPTY;
+			return CSharpElementVisitorVoid.EMPTY;
 		}
 
-		return new CSharpElementVisitor()
+		return new CSharpElementVisitorVoid()
 		{
 			@Override
 			public void visitLocalVariable(CSharpLocalVariable variable)

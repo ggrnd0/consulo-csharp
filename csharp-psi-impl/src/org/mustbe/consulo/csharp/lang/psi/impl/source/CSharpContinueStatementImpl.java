@@ -17,15 +17,15 @@
 package org.mustbe.consulo.csharp.lang.psi.impl.source;
 
 import org.jetbrains.annotations.NotNull;
+import org.mustbe.consulo.csharp.lang.psi.CSharpContinueStatement;
 import org.mustbe.consulo.csharp.lang.psi.CSharpElementVisitor;
-import org.mustbe.consulo.dotnet.psi.DotNetStatement;
 import com.intellij.lang.ASTNode;
 
 /**
  * @author VISTALL
  * @since 30.12.13.
  */
-public class CSharpContinueStatementImpl extends CSharpElementImpl implements DotNetStatement
+public class CSharpContinueStatementImpl extends CSharpElementImpl implements CSharpContinueStatement
 {
 	public CSharpContinueStatementImpl(@NotNull ASTNode node)
 	{
@@ -33,8 +33,8 @@ public class CSharpContinueStatementImpl extends CSharpElementImpl implements Do
 	}
 
 	@Override
-	public void accept(@NotNull CSharpElementVisitor visitor)
+	public <P, R> R accept(CSharpElementVisitor<P, R> visitor, P p)
 	{
-		visitor.visitContinueStatement(this);
+		return visitor.visitContinueStatement(this, p);
 	}
 }

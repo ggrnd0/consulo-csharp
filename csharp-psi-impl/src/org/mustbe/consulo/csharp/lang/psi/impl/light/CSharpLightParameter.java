@@ -17,7 +17,7 @@
 package org.mustbe.consulo.csharp.lang.psi.impl.light;
 
 import org.jetbrains.annotations.NotNull;
-import org.mustbe.consulo.csharp.lang.psi.CSharpElementVisitor;
+import org.mustbe.consulo.csharp.lang.psi.CSharpElementVisitorVoid;
 import org.mustbe.consulo.dotnet.psi.DotNetLikeMethodDeclaration;
 import org.mustbe.consulo.dotnet.psi.DotNetParameter;
 import org.mustbe.consulo.dotnet.resolve.DotNetTypeRef;
@@ -49,7 +49,7 @@ public class CSharpLightParameter extends CSharpLightVariable<DotNetParameter> i
 	}
 
 	@Override
-	public void accept(@NotNull CSharpElementVisitor visitor)
+	public void accept(@NotNull CSharpElementVisitorVoid visitor)
 	{
 		visitor.visitParameter(this);
 	}

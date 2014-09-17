@@ -22,7 +22,7 @@ import java.util.List;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.mustbe.consulo.csharp.lang.psi.CSharpElementVisitor;
+import org.mustbe.consulo.csharp.lang.psi.CSharpElementVisitorVoid;
 import org.mustbe.consulo.csharp.lang.psi.CSharpGenericConstraint;
 import org.mustbe.consulo.csharp.lang.psi.CSharpGenericConstraintList;
 import org.mustbe.consulo.csharp.lang.psi.CSharpMethodDeclaration;
@@ -49,7 +49,7 @@ public class CSharpLightMethodDeclarationBuilder extends CSharpLightLikeMethodDe
 	}
 
 	@Override
-	public void accept(@NotNull CSharpElementVisitor visitor)
+	public void accept(@NotNull CSharpElementVisitorVoid visitor)
 	{
 		visitor.visitMethodDeclaration(this);
 	}

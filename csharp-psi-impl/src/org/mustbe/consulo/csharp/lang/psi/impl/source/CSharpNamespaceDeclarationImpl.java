@@ -54,9 +54,9 @@ public class CSharpNamespaceDeclarationImpl extends CSharpStubElementImpl<CSharp
 	}
 
 	@Override
-	public void accept(@NotNull CSharpElementVisitor visitor)
+	public <P, R> R accept(CSharpElementVisitor<P, R> visitor, P p)
 	{
-		visitor.visitNamespaceDeclaration(this);
+		return visitor.visitNamespaceDeclaration(this, p);
 	}
 
 	@Override

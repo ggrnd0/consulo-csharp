@@ -41,7 +41,7 @@ public interface CSharpStubElements
 	CSharpTypeListElementType EXTENDS_LIST = new CSharpTypeListElementType("EXTENDS_LIST");
 	CSharpParameterListStubElementType PARAMETER_LIST = new CSharpParameterListStubElementType();
 	CSharpParameterStubElementType PARAMETER = new CSharpParameterStubElementType();
-	CSharpUsingListStubElementType USING_LIST = new CSharpUsingListStubElementType();
+	CSharpUsingListStubElementType USING_NAMESPACE_LIST = new CSharpUsingListStubElementType();
 	CSharpUsingNamespaceStatementStubElementType USING_NAMESPACE_STATEMENT = new CSharpUsingNamespaceStatementStubElementType();
 	CSharpTypeDefStubElementType TYPE_DEF_STATEMENT = new CSharpTypeDefStubElementType();
 	CSharpGenericParameterListStubElementType GENERIC_PARAMETER_LIST = new CSharpGenericParameterListStubElementType();

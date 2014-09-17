@@ -18,14 +18,14 @@ package org.mustbe.consulo.csharp.lang.psi.impl.source;
 
 import org.jetbrains.annotations.NotNull;
 import org.mustbe.consulo.csharp.lang.psi.CSharpElementVisitor;
-import org.mustbe.consulo.dotnet.psi.DotNetStatement;
+import org.mustbe.consulo.csharp.lang.psi.CSharpGotoStatement;
 import com.intellij.lang.ASTNode;
 
 /**
  * @author VISTALL
  * @since 06.01.14.
  */
-public class CSharpGotoStatementImpl extends CSharpElementImpl implements DotNetStatement
+public class CSharpGotoStatementImpl extends CSharpElementImpl implements CSharpGotoStatement
 {
 	public CSharpGotoStatementImpl(@NotNull ASTNode node)
 	{
@@ -33,8 +33,8 @@ public class CSharpGotoStatementImpl extends CSharpElementImpl implements DotNet
 	}
 
 	@Override
-	public void accept(@NotNull CSharpElementVisitor visitor)
+	public <P, R> R accept(CSharpElementVisitor<P, R> visitor, P p)
 	{
-		visitor.visitGotoStatement(this);
+		return visitor.visitGotoStatement(this, p);
 	}
 }

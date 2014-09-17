@@ -17,7 +17,7 @@
 package org.mustbe.consulo.csharp.lang.psi.impl.source;
 
 import org.jetbrains.annotations.NotNull;
-import org.mustbe.consulo.csharp.lang.psi.CSharpElementVisitor;
+import org.mustbe.consulo.csharp.lang.psi.CSharpElementVisitorVoid;
 import org.mustbe.consulo.csharp.lang.psi.CSharpLambdaParameter;
 import org.mustbe.consulo.csharp.lang.psi.CSharpLambdaParameterList;
 import org.mustbe.consulo.dotnet.resolve.DotNetTypeRef;
@@ -35,7 +35,7 @@ public class CSharpLambdaParameterListImpl extends CSharpElementImpl implements 
 	}
 
 	@Override
-	public void accept(@NotNull CSharpElementVisitor visitor)
+	public void accept(@NotNull CSharpElementVisitorVoid visitor)
 	{
 		visitor.visitLambdaParameterList(this);
 	}

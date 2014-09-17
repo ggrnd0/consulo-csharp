@@ -17,14 +17,13 @@
 package org.mustbe.consulo.csharp.lang.psi;
 
 import org.jetbrains.annotations.NotNull;
-import org.mustbe.consulo.dotnet.psi.DotNetElement;
 import org.mustbe.consulo.dotnet.resolve.DotNetTypeRef;
 
 /**
  * @author VISTALL
  * @since 12.06.14
  */
-public interface CSharpPseudoMethod extends DotNetElement
+public interface CSharpPseudoMethod extends CSharpElement
 {
 	@NotNull
 	DotNetTypeRef[] getParameterTypeRefs();

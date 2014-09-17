@@ -54,9 +54,9 @@ public class CSharpMethodDeclarationImpl extends CSharpLikeMethodDeclarationImpl
 	}
 
 	@Override
-	public void accept(@NotNull CSharpElementVisitor visitor)
+	public <P, R> R accept(CSharpElementVisitor<P, R> visitor, P p)
 	{
-		visitor.visitMethodDeclaration(this);
+		return visitor.visitMethodDeclaration(this, p);
 	}
 
 	@Override

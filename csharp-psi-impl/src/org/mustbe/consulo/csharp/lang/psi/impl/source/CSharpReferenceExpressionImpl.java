@@ -79,7 +79,8 @@ import lombok.val;
  * @since 28.11.13.
  */
 @Logger
-public class CSharpReferenceExpressionImpl extends CSharpElementImpl implements CSharpReferenceExpression, PsiPolyVariantReference, CSharpQualifiedNonReference
+public class CSharpReferenceExpressionImpl extends CSharpElementImpl implements CSharpReferenceExpression, PsiPolyVariantReference,
+		CSharpQualifiedNonReference
 {
 	private static class OurResolver implements ResolveCache.PolyVariantResolver<CSharpReferenceExpressionImpl>
 	{
@@ -157,9 +158,9 @@ public class CSharpReferenceExpressionImpl extends CSharpElementImpl implements 
 	}
 
 	@Override
-	public void accept(@NotNull CSharpElementVisitor visitor)
+	public <P, R> R accept(CSharpElementVisitor<P, R> visitor, P p)
 	{
-		visitor.visitReferenceExpression(this);
+		return visitor.visitReferenceExpression(this, p);
 	}
 
 	@Nullable
@@ -328,8 +329,7 @@ public class CSharpReferenceExpressionImpl extends CSharpElementImpl implements 
 						{
 							return 0;
 						}
-						return MethodAcceptorImpl.calcAcceptableWeight(e, parameters,
-								(CSharpArrayMethodDeclaration) psiNamedElement);
+						return MethodAcceptorImpl.calcAcceptableWeight(e, parameters, (CSharpArrayMethodDeclaration) psiNamedElement);
 					}
 				};
 				break;
@@ -499,10 +499,10 @@ public class CSharpReferenceExpressionImpl extends CSharpElementImpl implements 
 				CSharpResolveUtil.treeWalkUp(p, element, element, parentOfType);
 				return p.toResolveResults();
 			case TYPE_OR_NAMESPACE:
-				ResolveResultWithWeight[] typeResults = collectResults(ResolveToKind.TYPE_OR_GENERIC_PARAMETER_OR_DELEGATE_METHOD,
-						condition, weightProcessor, element, completion);
-				ResolveResultWithWeight[] namespaceResults = collectResults(ResolveToKind.NAMESPACE,
-						condition, weightProcessor, element, completion);
+				ResolveResultWithWeight[] typeResults = collectResults(ResolveToKind.TYPE_OR_GENERIC_PARAMETER_OR_DELEGATE_METHOD, condition,
+						weightProcessor, element, completion);
+				ResolveResultWithWeight[] namespaceResults = collectResults(ResolveToKind.NAMESPACE, condition, weightProcessor, element,
+						completion);
 				return ArrayUtil.mergeArrays(typeResults, namespaceResults);
 			case NAMESPACE:
 				if(!completion)
@@ -719,7 +719,7 @@ public class CSharpReferenceExpressionImpl extends CSharpElementImpl implements 
 			{
 				// walk for extensions
 				ExtensionResolveScopeProcessor p2 = new ExtensionResolveScopeProcessor(qualifierTypeRef, (CSharpReferenceExpression) element,
-					condition, !с);
+						condition, !с);
 				p2.merge(p);
 
 				resolveState = ResolveState.initial();
@@ -1062,7 +1062,8 @@ public class CSharpReferenceExpressionImpl extends CSharpElementImpl implements 
 					return false;
 				}
 
-				if(e instanceof DotNetVirtualImplementOwner && ((DotNetVirtualImplementOwner) e).getTypeRefForImplement() != DotNetTypeRef.ERROR_TYPE)
+				if(e instanceof DotNetVirtualImplementOwner && ((DotNetVirtualImplementOwner) e).getTypeRefForImplement() != DotNetTypeRef
+						.ERROR_TYPE)
 				{
 					return false;
 				}

@@ -59,9 +59,9 @@ public class CSharpParameterImpl extends CSharpStubElementImpl<CSharpVariableStu
 	}
 
 	@Override
-	public void accept(@NotNull CSharpElementVisitor visitor)
+	public <P, R> R accept(CSharpElementVisitor<P, R> visitor, P p)
 	{
-		visitor.visitParameter(this);
+		return visitor.visitParameter(this, p);
 	}
 
 	@Override

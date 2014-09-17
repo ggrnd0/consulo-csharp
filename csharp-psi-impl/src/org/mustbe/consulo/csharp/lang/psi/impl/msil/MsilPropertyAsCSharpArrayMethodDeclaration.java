@@ -22,7 +22,7 @@ import org.jetbrains.annotations.NonNls;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.mustbe.consulo.csharp.lang.psi.CSharpArrayMethodDeclaration;
-import org.mustbe.consulo.csharp.lang.psi.CSharpElementVisitor;
+import org.mustbe.consulo.csharp.lang.psi.CSharpElementVisitorVoid;
 import org.mustbe.consulo.csharp.lang.psi.impl.light.CSharpLightAttributeBuilder;
 import org.mustbe.consulo.csharp.lang.psi.impl.msil.typeParsing.SomeTypeParser;
 import org.mustbe.consulo.dotnet.DotNetTypes;
@@ -77,9 +77,9 @@ public class MsilPropertyAsCSharpArrayMethodDeclaration extends MsilElementWrapp
 	@Override
 	public void accept(@NotNull PsiElementVisitor visitor)
 	{
-		if(visitor instanceof CSharpElementVisitor)
+		if(visitor instanceof CSharpElementVisitorVoid)
 		{
-			((CSharpElementVisitor) visitor).visitArrayMethodDeclaration(this);
+			((CSharpElementVisitorVoid) visitor).visitArrayMethodDeclaration(this);
 		}
 		else
 		{

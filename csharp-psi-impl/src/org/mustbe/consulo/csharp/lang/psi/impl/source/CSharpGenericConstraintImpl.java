@@ -100,8 +100,8 @@ public class CSharpGenericConstraintImpl extends CSharpStubElementImpl<CSharpGen
 	}
 
 	@Override
-	public void accept(@NotNull CSharpElementVisitor visitor)
+	public <P, R> R accept(CSharpElementVisitor<P, R> visitor, P p)
 	{
-		visitor.visitGenericConstraint(this);
+		return visitor.visitGenericConstraint(this, p);
 	}
 }

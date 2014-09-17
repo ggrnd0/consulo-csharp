@@ -40,12 +40,6 @@ public class CSharpGenericParameterListImpl extends CSharpStubElementImpl<CSharp
 		super(stub, CSharpStubElements.GENERIC_PARAMETER_LIST);
 	}
 
-	@Override
-	public void accept(@NotNull CSharpElementVisitor visitor)
-	{
-		visitor.visitGenericParameterList(this);
-	}
-
 	@NotNull
 	@Override
 	public DotNetGenericParameter[] getParameters()
@@ -57,5 +51,11 @@ public class CSharpGenericParameterListImpl extends CSharpStubElementImpl<CSharp
 	public int getGenericParametersCount()
 	{
 		return getParameters().length;
+	}
+
+	@Override
+	public <P, R> R accept(CSharpElementVisitor<P, R> visitor, P p)
+	{
+		return visitor.visitGenericParameterList(this, p);
 	}
 }

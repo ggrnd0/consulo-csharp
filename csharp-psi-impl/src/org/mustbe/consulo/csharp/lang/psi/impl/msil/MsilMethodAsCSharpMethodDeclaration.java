@@ -21,7 +21,7 @@ import java.util.Map;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.mustbe.consulo.csharp.lang.psi.CSharpElementVisitor;
+import org.mustbe.consulo.csharp.lang.psi.CSharpElementVisitorVoid;
 import org.mustbe.consulo.csharp.lang.psi.CSharpGenericConstraint;
 import org.mustbe.consulo.csharp.lang.psi.CSharpGenericConstraintList;
 import org.mustbe.consulo.csharp.lang.psi.CSharpMethodDeclaration;
@@ -91,9 +91,9 @@ public class MsilMethodAsCSharpMethodDeclaration extends MsilMethodAsCSharpLikeM
 	@Override
 	public void accept(@NotNull PsiElementVisitor visitor)
 	{
-		if(visitor instanceof CSharpElementVisitor)
+		if(visitor instanceof CSharpElementVisitorVoid)
 		{
-			((CSharpElementVisitor) visitor).visitMethodDeclaration(this);
+			((CSharpElementVisitorVoid) visitor).visitMethodDeclaration(this);
 		}
 		else
 		{

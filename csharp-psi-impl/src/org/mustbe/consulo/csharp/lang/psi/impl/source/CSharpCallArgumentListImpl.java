@@ -23,7 +23,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.mustbe.consulo.csharp.lang.psi.CSharpCallArgument;
 import org.mustbe.consulo.csharp.lang.psi.CSharpCallArgumentList;
-import org.mustbe.consulo.csharp.lang.psi.CSharpElementVisitor;
+import org.mustbe.consulo.csharp.lang.psi.CSharpElementVisitorVoid;
 import org.mustbe.consulo.csharp.lang.psi.CSharpFieldOrPropertySet;
 import org.mustbe.consulo.csharp.lang.psi.CSharpNamedCallArgument;
 import org.mustbe.consulo.csharp.lang.psi.CSharpTokens;
@@ -97,7 +97,7 @@ public class CSharpCallArgumentListImpl extends CSharpElementImpl implements CSh
 	}
 
 	@Override
-	public void accept(@NotNull CSharpElementVisitor visitor)
+	public void accept(@NotNull CSharpElementVisitorVoid visitor)
 	{
 		visitor.visitMethodCallParameterList(this);
 	}

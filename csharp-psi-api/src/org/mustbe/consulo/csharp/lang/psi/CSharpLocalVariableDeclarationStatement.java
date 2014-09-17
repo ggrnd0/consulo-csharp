@@ -17,13 +17,12 @@
 package org.mustbe.consulo.csharp.lang.psi;
 
 import org.jetbrains.annotations.NotNull;
-import org.mustbe.consulo.dotnet.psi.DotNetStatement;
 
 /**
  * @author VISTALL
  * @since 16.12.13.
  */
-public interface CSharpLocalVariableDeclarationStatement extends DotNetStatement
+public interface CSharpLocalVariableDeclarationStatement extends CSharpStatement
 {
 	@NotNull
 	CSharpLocalVariable[] getVariables();

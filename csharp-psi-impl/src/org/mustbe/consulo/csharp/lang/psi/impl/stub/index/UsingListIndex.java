@@ -17,7 +17,7 @@
 package org.mustbe.consulo.csharp.lang.psi.impl.stub.index;
 
 import org.jetbrains.annotations.NotNull;
-import org.mustbe.consulo.csharp.lang.psi.impl.source.CSharpUsingListImpl;
+import org.mustbe.consulo.csharp.lang.psi.impl.source.CSharpUsingNamespaceListImpl;
 import com.intellij.psi.stubs.StringStubIndexExtension;
 import com.intellij.psi.stubs.StubIndexExtension;
 import com.intellij.psi.stubs.StubIndexKey;
@@ -26,7 +26,7 @@ import com.intellij.psi.stubs.StubIndexKey;
  * @author VISTALL
  * @since 02.03.14
  */
-public class UsingListIndex extends StringStubIndexExtension<CSharpUsingListImpl>
+public class UsingListIndex extends StringStubIndexExtension<CSharpUsingNamespaceListImpl>
 {
 	public static UsingListIndex getInstance()
 	{
@@ -35,7 +35,7 @@ public class UsingListIndex extends StringStubIndexExtension<CSharpUsingListImpl
 
 	@NotNull
 	@Override
-	public StubIndexKey<String, CSharpUsingListImpl> getKey()
+	public StubIndexKey<String, CSharpUsingNamespaceListImpl> getKey()
 	{
 		return CSharpIndexKeys.USING_LIST_INDEX;
 	}

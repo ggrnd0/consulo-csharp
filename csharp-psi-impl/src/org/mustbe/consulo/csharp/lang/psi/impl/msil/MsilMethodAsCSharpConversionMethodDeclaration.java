@@ -19,7 +19,7 @@ package org.mustbe.consulo.csharp.lang.psi.impl.msil;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.mustbe.consulo.csharp.lang.psi.CSharpConversionMethodDeclaration;
-import org.mustbe.consulo.csharp.lang.psi.CSharpElementVisitor;
+import org.mustbe.consulo.csharp.lang.psi.CSharpElementVisitorVoid;
 import org.mustbe.consulo.csharp.lang.psi.impl.source.resolve.type.CSharpStaticTypeRef;
 import org.mustbe.consulo.dotnet.psi.DotNetType;
 import org.mustbe.consulo.dotnet.resolve.DotNetTypeRef;
@@ -49,9 +49,9 @@ public class MsilMethodAsCSharpConversionMethodDeclaration extends MsilMethodAsC
 	@Override
 	public void accept(@NotNull PsiElementVisitor visitor)
 	{
-		if(visitor instanceof CSharpElementVisitor)
+		if(visitor instanceof CSharpElementVisitorVoid)
 		{
-			((CSharpElementVisitor) visitor).visitConversionMethodDeclaration(this);
+			((CSharpElementVisitorVoid) visitor).visitConversionMethodDeclaration(this);
 		}
 		else
 		{

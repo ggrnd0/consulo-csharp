@@ -17,7 +17,7 @@
 package org.mustbe.consulo.csharp.ide.codeInspection.unnecessaryCast;
 
 import org.jetbrains.annotations.NotNull;
-import org.mustbe.consulo.csharp.lang.psi.CSharpElementVisitor;
+import org.mustbe.consulo.csharp.lang.psi.CSharpElementVisitorVoid;
 import org.mustbe.consulo.csharp.lang.psi.impl.CSharpTypeUtil;
 import org.mustbe.consulo.csharp.lang.psi.impl.source.CSharpTypeCastExpressionImpl;
 import org.mustbe.consulo.dotnet.psi.DotNetExpression;
@@ -38,7 +38,7 @@ public class UnnecessaryCastInspection extends LocalInspectionTool
 	@Override
 	public PsiElementVisitor buildVisitor(@NotNull final ProblemsHolder holder, boolean isOnTheFly, @NotNull LocalInspectionToolSession session)
 	{
-		return new CSharpElementVisitor()
+		return new CSharpElementVisitorVoid()
 		{
 			@Override
 			public void visitTypeCastExpression(CSharpTypeCastExpressionImpl expression)

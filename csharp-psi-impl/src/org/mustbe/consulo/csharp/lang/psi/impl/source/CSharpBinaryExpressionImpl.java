@@ -18,7 +18,7 @@ package org.mustbe.consulo.csharp.lang.psi.impl.source;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.mustbe.consulo.csharp.lang.psi.CSharpCallArgumentListOwner;
+import org.mustbe.consulo.csharp.lang.psi.CSharpBinaryExpression;
 import org.mustbe.consulo.csharp.lang.psi.CSharpElementVisitor;
 import org.mustbe.consulo.dotnet.psi.DotNetExpression;
 import com.intellij.lang.ASTNode;
@@ -28,17 +28,11 @@ import com.intellij.psi.PsiElement;
  * @author VISTALL
  * @since 29.12.13.
  */
-public class CSharpBinaryExpressionImpl extends CSharpExpressionWithOperatorImpl implements DotNetExpression, CSharpCallArgumentListOwner
+public class CSharpBinaryExpressionImpl extends CSharpExpressionWithOperatorImpl implements CSharpBinaryExpression
 {
 	public CSharpBinaryExpressionImpl(@NotNull ASTNode node)
 	{
 		super(node);
-	}
-
-	@Override
-	public void accept(@NotNull CSharpElementVisitor visitor)
-	{
-		visitor.visitBinaryExpression(this);
 	}
 
 	@Nullable
@@ -61,5 +55,11 @@ public class CSharpBinaryExpressionImpl extends CSharpExpressionWithOperatorImpl
 			nextSibling = nextSibling.getNextSibling();
 		}
 		return null;
+	}
+
+	@Override
+	public <P, R> R accept(CSharpElementVisitor<P, R> visitor, P p)
+	{
+		return visitor.visitBinaryExpression(this, p);
 	}
 }

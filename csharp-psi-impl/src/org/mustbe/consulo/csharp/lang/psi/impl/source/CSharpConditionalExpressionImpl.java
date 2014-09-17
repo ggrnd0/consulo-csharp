@@ -18,6 +18,7 @@ package org.mustbe.consulo.csharp.lang.psi.impl.source;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.mustbe.consulo.csharp.lang.psi.CSharpConditionalExpression;
 import org.mustbe.consulo.csharp.lang.psi.CSharpElementVisitor;
 import org.mustbe.consulo.csharp.lang.psi.impl.CSharpTypeUtil;
 import org.mustbe.consulo.dotnet.psi.DotNetExpression;
@@ -29,7 +30,7 @@ import com.intellij.lang.ASTNode;
  * @author VISTALL
  * @since 04.01.14.
  */
-public class CSharpConditionalExpressionImpl extends CSharpElementImpl implements DotNetExpression
+public class CSharpConditionalExpressionImpl extends CSharpElementImpl implements CSharpConditionalExpression
 {
 	public CSharpConditionalExpressionImpl(@NotNull ASTNode node)
 	{
@@ -37,9 +38,9 @@ public class CSharpConditionalExpressionImpl extends CSharpElementImpl implement
 	}
 
 	@Override
-	public void accept(@NotNull CSharpElementVisitor visitor)
+	public <P, R> R accept(CSharpElementVisitor<P, R> visitor, P p)
 	{
-		visitor.visitConditionalExpression(this);
+		return visitor.visitConditionalExpression(this, p);
 	}
 
 	private DotNetExpression[] getExpressions()

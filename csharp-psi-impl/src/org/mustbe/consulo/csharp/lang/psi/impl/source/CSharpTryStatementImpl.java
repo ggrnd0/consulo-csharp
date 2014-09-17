@@ -19,14 +19,14 @@ package org.mustbe.consulo.csharp.lang.psi.impl.source;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.mustbe.consulo.csharp.lang.psi.CSharpElementVisitor;
-import org.mustbe.consulo.dotnet.psi.DotNetStatement;
+import org.mustbe.consulo.csharp.lang.psi.CSharpTryStatement;
 import com.intellij.lang.ASTNode;
 
 /**
  * @author VISTALL
  * @since 17.01.14
  */
-public class CSharpTryStatementImpl extends CSharpElementImpl implements DotNetStatement
+public class CSharpTryStatementImpl extends CSharpElementImpl implements CSharpTryStatement
 {
 	public CSharpTryStatementImpl(@NotNull ASTNode node)
 	{
@@ -34,9 +34,9 @@ public class CSharpTryStatementImpl extends CSharpElementImpl implements DotNetS
 	}
 
 	@Override
-	public void accept(@NotNull CSharpElementVisitor visitor)
+	public <P, R> R accept(CSharpElementVisitor<P, R> visitor, P p)
 	{
-		visitor.visitTryStatement(this);
+		return visitor.visitTryStatement(this, p);
 	}
 
 	@NotNull

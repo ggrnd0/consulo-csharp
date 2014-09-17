@@ -18,8 +18,8 @@ package org.mustbe.consulo.csharp.lang.psi.impl.source;
 
 import org.jetbrains.annotations.NotNull;
 import org.mustbe.consulo.csharp.lang.psi.CSharpElementVisitor;
+import org.mustbe.consulo.csharp.lang.psi.CSharpFixedStatement;
 import org.mustbe.consulo.csharp.lang.psi.CSharpTokens;
-import org.mustbe.consulo.dotnet.psi.DotNetStatement;
 import org.mustbe.consulo.dotnet.psi.DotNetVariable;
 import com.intellij.lang.ASTNode;
 import com.intellij.psi.PsiElement;
@@ -31,7 +31,7 @@ import com.intellij.psi.util.PsiTreeUtil;
  * @author VISTALL
  * @since 06.01.14.
  */
-public class CSharpFixedStatementImpl extends CSharpElementImpl implements DotNetStatement
+public class CSharpFixedStatementImpl extends CSharpElementImpl implements CSharpFixedStatement
 {
 	public CSharpFixedStatementImpl(@NotNull ASTNode node)
 	{
@@ -39,9 +39,9 @@ public class CSharpFixedStatementImpl extends CSharpElementImpl implements DotNe
 	}
 
 	@Override
-	public void accept(@NotNull CSharpElementVisitor visitor)
+	public <P, R> R accept(CSharpElementVisitor<P, R> visitor, P p)
 	{
-		visitor.visitFixedStatement(this);
+		return visitor.visitFixedStatement(this, p);
 	}
 
 	@NotNull

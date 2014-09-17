@@ -18,9 +18,9 @@ package org.mustbe.consulo.csharp.lang.psi.impl.source;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.mustbe.consulo.csharp.lang.psi.CSharpAttributeList;
 import org.mustbe.consulo.csharp.lang.psi.CSharpElementVisitor;
 import org.mustbe.consulo.dotnet.psi.DotNetAttribute;
-import org.mustbe.consulo.dotnet.psi.DotNetAttributeList;
 import org.mustbe.consulo.dotnet.psi.DotNetAttributeTargetType;
 import com.intellij.lang.ASTNode;
 
@@ -28,7 +28,7 @@ import com.intellij.lang.ASTNode;
  * @author VISTALL
  * @since 19.12.13.
  */
-public class CSharpAttributeListImpl extends CSharpElementImpl implements DotNetAttributeList
+public class CSharpAttributeListImpl extends CSharpElementImpl implements CSharpAttributeList
 {
 	public CSharpAttributeListImpl(@NotNull ASTNode node)
 	{
@@ -36,9 +36,9 @@ public class CSharpAttributeListImpl extends CSharpElementImpl implements DotNet
 	}
 
 	@Override
-	public void accept(@NotNull CSharpElementVisitor visitor)
+	public <P, R> R accept(CSharpElementVisitor<P, R> visitor, P p)
 	{
-		visitor.visitAttributeList(this);
+		return visitor.visitAttributeList(this, p);
 	}
 
 	@Nullable

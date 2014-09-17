@@ -22,7 +22,7 @@ import org.jetbrains.annotations.NonNls;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.mustbe.consulo.csharp.ide.reflactoring.CSharpRefactoringUtil;
-import org.mustbe.consulo.csharp.lang.psi.CSharpElementVisitor;
+import org.mustbe.consulo.csharp.lang.psi.CSharpElementVisitorVoid;
 import org.mustbe.consulo.csharp.lang.psi.CSharpLocalVariable;
 import org.mustbe.consulo.csharp.lang.psi.CSharpLocalVariableDeclarationStatement;
 import org.mustbe.consulo.csharp.lang.psi.CSharpTokens;
@@ -53,7 +53,7 @@ public class CSharpLocalVariableImpl extends CSharpVariableImpl implements CShar
 	}
 
 	@Override
-	public void accept(@NotNull CSharpElementVisitor visitor)
+	public void accept(@NotNull CSharpElementVisitorVoid visitor)
 	{
 		visitor.visitLocalVariable(this);
 	}

@@ -19,6 +19,7 @@ package org.mustbe.consulo.csharp.lang.psi.impl.source;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.joou.Unsigned;
+import org.mustbe.consulo.csharp.lang.psi.CSharpConstantExpression;
 import org.mustbe.consulo.csharp.lang.psi.CSharpElementVisitor;
 import org.mustbe.consulo.csharp.lang.psi.CSharpTokens;
 import org.mustbe.consulo.csharp.lang.psi.impl.msil.CSharpTransform;
@@ -26,7 +27,6 @@ import org.mustbe.consulo.csharp.lang.psi.impl.source.injection.CSharpStringLite
 import org.mustbe.consulo.csharp.lang.psi.impl.source.resolve.type.CSharpConstantTypeRef;
 import org.mustbe.consulo.dotnet.DotNetTypes;
 import org.mustbe.consulo.dotnet.lang.psi.impl.source.resolve.type.DotNetTypeRefByQName;
-import org.mustbe.consulo.dotnet.psi.DotNetConstantExpression;
 import org.mustbe.consulo.dotnet.resolve.DotNetTypeRef;
 import com.intellij.lang.ASTNode;
 import com.intellij.openapi.util.text.StringUtil;
@@ -40,7 +40,7 @@ import com.intellij.psi.tree.IElementType;
  * @author VISTALL
  * @since 16.12.13.
  */
-public class CSharpConstantExpressionImpl extends CSharpElementImpl implements DotNetConstantExpression, PsiLanguageInjectionHost
+public class CSharpConstantExpressionImpl extends CSharpElementImpl implements CSharpConstantExpression, PsiLanguageInjectionHost
 {
 	public CSharpConstantExpressionImpl(@NotNull ASTNode node)
 	{
@@ -48,9 +48,9 @@ public class CSharpConstantExpressionImpl extends CSharpElementImpl implements D
 	}
 
 	@Override
-	public void accept(@NotNull CSharpElementVisitor visitor)
+	public <P, R> R accept(CSharpElementVisitor<P, R> visitor, P p)
 	{
-		visitor.visitConstantExpression(this);
+		return visitor.visitConstantExpression(this, p);
 	}
 
 	@NotNull

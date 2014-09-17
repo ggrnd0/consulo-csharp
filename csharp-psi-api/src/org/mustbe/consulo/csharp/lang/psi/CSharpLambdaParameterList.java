@@ -17,14 +17,13 @@
 package org.mustbe.consulo.csharp.lang.psi;
 
 import org.jetbrains.annotations.NotNull;
-import org.mustbe.consulo.dotnet.psi.DotNetElement;
 import org.mustbe.consulo.dotnet.resolve.DotNetTypeRef;
 
 /**
  * @author VISTALL
  * @since 19.01.14
  */
-public interface CSharpLambdaParameterList extends DotNetElement
+public interface CSharpLambdaParameterList extends CSharpElement
 {
 	@NotNull
 	CSharpLambdaParameter[] getParameters();

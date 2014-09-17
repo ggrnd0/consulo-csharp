@@ -17,10 +17,10 @@
 package org.mustbe.consulo.csharp.lang.psi.impl.source;
 
 import org.jetbrains.annotations.NotNull;
+import org.mustbe.consulo.csharp.lang.psi.CSharpArrayType;
 import org.mustbe.consulo.csharp.lang.psi.CSharpElementVisitor;
 import org.mustbe.consulo.csharp.lang.psi.CSharpTokenSets;
 import org.mustbe.consulo.csharp.lang.psi.impl.source.resolve.type.CSharpArrayTypeRef;
-import org.mustbe.consulo.dotnet.psi.DotNetArrayType;
 import org.mustbe.consulo.dotnet.psi.DotNetType;
 import org.mustbe.consulo.dotnet.resolve.DotNetTypeRef;
 import com.intellij.lang.ASTNode;
@@ -29,7 +29,7 @@ import com.intellij.lang.ASTNode;
  * @author VISTALL
  * @since 13.12.13.
  */
-public class CSharpArrayTypeImpl extends CSharpElementImpl implements DotNetArrayType
+public class CSharpArrayTypeImpl extends CSharpElementImpl implements CSharpArrayType
 {
 	public CSharpArrayTypeImpl(@NotNull ASTNode node)
 	{
@@ -45,15 +45,16 @@ public class CSharpArrayTypeImpl extends CSharpElementImpl implements DotNetArra
 		return new CSharpArrayTypeRef(innerType.toTypeRef(), getDimensions());
 	}
 
+	@Override
 	public int getDimensions()
 	{
 		return findChildrenByType(CSharpTokenSets.COMMA).size();
 	}
 
 	@Override
-	public void accept(@NotNull CSharpElementVisitor visitor)
+	public <P, R> R accept(CSharpElementVisitor<P, R> visitor, P p)
 	{
-		visitor.visitArrayType(this);
+		return visitor.visitArrayType(this, p);
 	}
 
 	@NotNull

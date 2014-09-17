@@ -26,8 +26,8 @@ import org.mustbe.consulo.csharp.lang.psi.CSharpFileFactory;
 import org.mustbe.consulo.csharp.lang.psi.CSharpRecursiveElementVisitor;
 import org.mustbe.consulo.csharp.lang.psi.impl.source.CSharpFileImpl;
 import org.mustbe.consulo.csharp.lang.psi.impl.source.CSharpTypeDefStatementImpl;
-import org.mustbe.consulo.csharp.lang.psi.impl.source.CSharpUsingListChild;
-import org.mustbe.consulo.csharp.lang.psi.impl.source.CSharpUsingListImpl;
+import org.mustbe.consulo.csharp.lang.psi.CSharpUsingListChild;
+import org.mustbe.consulo.csharp.lang.psi.impl.source.CSharpUsingNamespaceListImpl;
 import org.mustbe.consulo.csharp.lang.psi.impl.source.CSharpUsingNamespaceStatementImpl;
 import org.mustbe.consulo.dotnet.psi.DotNetReferenceExpression;
 import org.mustbe.consulo.dotnet.psi.DotNetType;
@@ -59,7 +59,7 @@ public class CSharpImportOptimizer implements ImportOptimizer
 				psiFile.accept(new CSharpRecursiveElementVisitor()
 				{
 					@Override
-					public void visitUsingNamespaceList(CSharpUsingListImpl list)
+					public void visitUsingNamespaceList(CSharpUsingNamespaceListImpl list)
 					{
 						formatUsing(list);
 					}
@@ -68,7 +68,7 @@ public class CSharpImportOptimizer implements ImportOptimizer
 		};
 	}
 
-	private static void formatUsing(@NotNull CSharpUsingListImpl usingList)
+	private static void formatUsing(@NotNull CSharpUsingNamespaceListImpl usingList)
 	{
 		Set<String> namespaceUse = new TreeSet<String>();
 		List<Pair<String, String>> typeDef = new ArrayList<Pair<String, String>>();
@@ -105,7 +105,7 @@ public class CSharpImportOptimizer implements ImportOptimizer
 			builder.append("using ").append(pair.getFirst()).append(" = ").append(pair.getSecond()).append(";\n");
 		}
 
-		CSharpUsingListImpl usingListFromText = CSharpFileFactory.createUsingListFromText(usingList.getProject(), builder.toString());
+		CSharpUsingNamespaceListImpl usingListFromText = CSharpFileFactory.createUsingListFromText(usingList.getProject(), builder.toString());
 
 		usingList.replace(usingListFromText);
 	}

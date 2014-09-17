@@ -44,6 +44,12 @@
 		</group>
 	</actions>
 
+	<project-components>
+		<component>
+			<implementation-class>org.mustbe.consulo.csharp.ide.highlight.CSharpPostHighlightPassFactory</implementation-class>
+		</component>
+	</project-components>
+
 	<extensionPoints>
 		<extensionPoint name="unusedElementPolicy" interface="org.mustbe.consulo.csharp.ide.codeInspection.unusedSymbol.UnusedElementPolicy" />
 	</extensionPoints>

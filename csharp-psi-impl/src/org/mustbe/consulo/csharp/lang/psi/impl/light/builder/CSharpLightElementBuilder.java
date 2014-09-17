@@ -18,7 +18,7 @@ package org.mustbe.consulo.csharp.lang.psi.impl.light.builder;
 
 import org.jetbrains.annotations.NotNull;
 import org.mustbe.consulo.csharp.lang.CSharpLanguage;
-import org.mustbe.consulo.csharp.lang.psi.CSharpElementVisitor;
+import org.mustbe.consulo.csharp.lang.psi.CSharpElementVisitorVoid;
 import com.intellij.openapi.project.Project;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiElementVisitor;
@@ -54,9 +54,9 @@ public abstract class CSharpLightElementBuilder<T extends CSharpLightElementBuil
 	@Override
 	public void accept(@NotNull PsiElementVisitor visitor)
 	{
-		if(visitor instanceof CSharpElementVisitor)
+		if(visitor instanceof CSharpElementVisitorVoid)
 		{
-			accept((CSharpElementVisitor)visitor);
+			accept((CSharpElementVisitorVoid)visitor);
 		}
 		else
 		{
@@ -64,7 +64,7 @@ public abstract class CSharpLightElementBuilder<T extends CSharpLightElementBuil
 		}
 	}
 
-	public abstract void accept(@NotNull CSharpElementVisitor visitor);
+	public abstract void accept(@NotNull CSharpElementVisitorVoid visitor);
 
 	@Override
 	public PsiFile getContainingFile()

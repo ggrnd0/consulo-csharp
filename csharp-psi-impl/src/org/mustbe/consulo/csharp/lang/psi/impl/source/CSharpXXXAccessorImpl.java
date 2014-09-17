@@ -143,9 +143,9 @@ public class CSharpXXXAccessorImpl extends CSharpStubMemberImpl<CSharpXXXAccesso
 	}
 
 	@Override
-	public void accept(@NotNull CSharpElementVisitor visitor)
+	public <P, R> R accept(CSharpElementVisitor<P, R> visitor, P p)
 	{
-		visitor.visitXXXAccessor(this);
+		return visitor.visitXXXAccessor(this, p);
 	}
 
 	@Nullable

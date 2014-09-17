@@ -21,6 +21,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.mustbe.consulo.csharp.lang.psi.CSharpElementVisitor;
 import org.mustbe.consulo.csharp.lang.psi.CSharpStubElements;
+import org.mustbe.consulo.csharp.lang.psi.CSharpUsingNamespaceStatement;
 import org.mustbe.consulo.csharp.lang.psi.impl.CSharpNamespaceAsElement;
 import org.mustbe.consulo.csharp.lang.psi.impl.CSharpNamespaceHelper;
 import org.mustbe.consulo.csharp.lang.psi.impl.stub.CSharpUsingNamespaceStatementStub;
@@ -37,7 +38,7 @@ import com.intellij.psi.scope.PsiScopeProcessor;
  * @since 28.11.13.
  */
 @ArrayFactoryFields
-public class CSharpUsingNamespaceStatementImpl extends CSharpStubElementImpl<CSharpUsingNamespaceStatementStub> implements CSharpUsingListChild
+public class CSharpUsingNamespaceStatementImpl extends CSharpStubElementImpl<CSharpUsingNamespaceStatementStub> implements CSharpUsingNamespaceStatement
 {
 	public CSharpUsingNamespaceStatementImpl(@NotNull ASTNode node)
 	{
@@ -89,9 +90,9 @@ public class CSharpUsingNamespaceStatementImpl extends CSharpStubElementImpl<CSh
 	}
 
 	@Override
-	public void accept(@NotNull CSharpElementVisitor visitor)
+	public <P, R> R accept(CSharpElementVisitor<P, R> visitor, P p)
 	{
-		visitor.visitUsingNamespaceStatement(this);
+		return visitor.visitUsingNamespaceStatement(this, p);
 	}
 
 	@Nullable

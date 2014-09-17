@@ -18,14 +18,14 @@ package org.mustbe.consulo.csharp.lang.psi.impl.source;
 
 import org.jetbrains.annotations.NotNull;
 import org.mustbe.consulo.csharp.lang.psi.CSharpElementVisitor;
-import org.mustbe.consulo.dotnet.psi.DotNetStatement;
+import org.mustbe.consulo.csharp.lang.psi.CSharpWhileStatement;
 import com.intellij.lang.ASTNode;
 
 /**
  * @author VISTALL
  * @since 30.12.13.
  */
-public class CSharpWhileStatementImpl extends CSharpElementImpl implements DotNetStatement
+public class CSharpWhileStatementImpl extends CSharpElementImpl implements CSharpWhileStatement
 {
 	public CSharpWhileStatementImpl(@NotNull ASTNode node)
 	{
@@ -33,8 +33,8 @@ public class CSharpWhileStatementImpl extends CSharpElementImpl implements DotNe
 	}
 
 	@Override
-	public void accept(@NotNull CSharpElementVisitor visitor)
+	public <P, R> R accept(CSharpElementVisitor<P, R> visitor, P p)
 	{
-		visitor.visitWhileStatement(this);
+		return visitor.visitWhileStatement(this, p);
 	}
 }

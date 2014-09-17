@@ -19,9 +19,9 @@ package org.mustbe.consulo.csharp.lang.psi.impl.source;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.mustbe.consulo.csharp.lang.psi.CSharpCallArgumentList;
-import org.mustbe.consulo.csharp.lang.psi.CSharpCallArgumentListOwner;
 import org.mustbe.consulo.csharp.lang.psi.CSharpElementVisitor;
 import org.mustbe.consulo.csharp.lang.psi.CSharpElements;
+import org.mustbe.consulo.csharp.lang.psi.CSharpMethodCallExpression;
 import org.mustbe.consulo.csharp.lang.psi.CSharpPseudoMethod;
 import org.mustbe.consulo.csharp.lang.psi.impl.source.resolve.type.CSharpLambdaTypeRef;
 import org.mustbe.consulo.dotnet.psi.DotNetExpression;
@@ -36,7 +36,7 @@ import com.intellij.psi.ResolveResult;
  * @author VISTALL
  * @since 16.12.13.
  */
-public class CSharpMethodCallExpressionImpl extends CSharpElementImpl implements DotNetExpression, CSharpCallArgumentListOwner
+public class CSharpMethodCallExpressionImpl extends CSharpElementImpl implements CSharpMethodCallExpression
 {
 	public CSharpMethodCallExpressionImpl(@NotNull ASTNode node)
 	{
@@ -86,9 +86,9 @@ public class CSharpMethodCallExpressionImpl extends CSharpElementImpl implements
 	}
 
 	@Override
-	public void accept(@NotNull CSharpElementVisitor visitor)
+	public <P, R> R accept(CSharpElementVisitor<P, R> visitor, P p)
 	{
-		visitor.visitMethodCallExpression(this);
+		return visitor.visitMethodCallExpression(this, p);
 	}
 
 	@Override

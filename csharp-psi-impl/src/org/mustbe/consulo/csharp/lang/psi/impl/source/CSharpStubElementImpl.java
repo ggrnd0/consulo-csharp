@@ -17,6 +17,7 @@
 package org.mustbe.consulo.csharp.lang.psi.impl.source;
 
 import org.jetbrains.annotations.NotNull;
+import org.mustbe.consulo.csharp.lang.psi.CSharpElement;
 import org.mustbe.consulo.csharp.lang.psi.CSharpElementVisitor;
 import org.mustbe.consulo.dotnet.psi.DotNetNamedElement;
 import com.intellij.extapi.psi.StubBasedPsiElementBase;
@@ -34,7 +35,7 @@ import com.intellij.psi.stubs.StubElement;
  * @author VISTALL
  * @since 15.12.13.
  */
-public abstract class CSharpStubElementImpl<S extends StubElement> extends StubBasedPsiElementBase<S> implements StubBasedPsiElement<S>
+public abstract class CSharpStubElementImpl<S extends StubElement> extends StubBasedPsiElementBase<S> implements StubBasedPsiElement<S>, CSharpElement
 {
 	public CSharpStubElementImpl(@NotNull ASTNode node)
 	{
@@ -78,13 +79,11 @@ public abstract class CSharpStubElementImpl<S extends StubElement> extends StubB
 	{
 		if(visitor instanceof CSharpElementVisitor)
 		{
-			accept((CSharpElementVisitor)visitor);
+			accept((CSharpElementVisitor) visitor, null);
 		}
 		else
 		{
 			super.accept(visitor);
 		}
 	}
-
-	public abstract void accept(@NotNull CSharpElementVisitor visitor);
 }

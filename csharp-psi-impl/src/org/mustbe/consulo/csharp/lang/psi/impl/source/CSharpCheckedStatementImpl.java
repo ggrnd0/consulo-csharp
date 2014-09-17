@@ -1,16 +1,16 @@
 package org.mustbe.consulo.csharp.lang.psi.impl.source;
 
 import org.jetbrains.annotations.NotNull;
+import org.mustbe.consulo.csharp.lang.psi.CSharpCheckedStatement;
 import org.mustbe.consulo.csharp.lang.psi.CSharpElementVisitor;
 import org.mustbe.consulo.csharp.lang.psi.CSharpTokens;
-import org.mustbe.consulo.dotnet.psi.DotNetStatement;
 import com.intellij.lang.ASTNode;
 
 /**
  * @author VISTALL
  * @since 11.02.14
  */
-public class CSharpCheckedStatementImpl extends CSharpElementImpl implements DotNetStatement
+public class CSharpCheckedStatementImpl extends CSharpElementImpl implements CSharpCheckedStatement
 {
 	public CSharpCheckedStatementImpl(@NotNull ASTNode node)
 	{
@@ -23,8 +23,8 @@ public class CSharpCheckedStatementImpl extends CSharpElementImpl implements Dot
 	}
 
 	@Override
-	public void accept(@NotNull CSharpElementVisitor visitor)
+	public <P, R> R accept(CSharpElementVisitor<P, R> visitor, P p)
 	{
-		visitor.visitCheckedStatement(this);
+		return visitor.visitCheckedStatement(this, p);
 	}
 }

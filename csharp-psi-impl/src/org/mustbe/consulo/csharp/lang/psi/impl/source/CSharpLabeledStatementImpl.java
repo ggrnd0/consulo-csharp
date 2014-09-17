@@ -19,12 +19,10 @@ package org.mustbe.consulo.csharp.lang.psi.impl.source;
 import org.jetbrains.annotations.NonNls;
 import org.jetbrains.annotations.NotNull;
 import org.mustbe.consulo.csharp.lang.psi.CSharpElementVisitor;
+import org.mustbe.consulo.csharp.lang.psi.CSharpLabeledStatement;
 import org.mustbe.consulo.csharp.lang.psi.CSharpTokens;
-import org.mustbe.consulo.dotnet.psi.DotNetNamedElement;
-import org.mustbe.consulo.dotnet.psi.DotNetStatement;
 import com.intellij.lang.ASTNode;
 import com.intellij.psi.PsiElement;
-import com.intellij.psi.PsiNameIdentifierOwner;
 import com.intellij.psi.ResolveState;
 import com.intellij.psi.scope.PsiScopeProcessor;
 import com.intellij.util.IncorrectOperationException;
@@ -33,7 +31,7 @@ import com.intellij.util.IncorrectOperationException;
  * @author VISTALL
  * @since 06.01.14.
  */
-public class CSharpLabeledStatementImpl extends CSharpElementImpl implements DotNetStatement, PsiNameIdentifierOwner, DotNetNamedElement
+public class CSharpLabeledStatementImpl extends CSharpElementImpl implements CSharpLabeledStatement
 {
 	public CSharpLabeledStatementImpl(@NotNull ASTNode node)
 	{
@@ -41,9 +39,9 @@ public class CSharpLabeledStatementImpl extends CSharpElementImpl implements Dot
 	}
 
 	@Override
-	public void accept(@NotNull CSharpElementVisitor visitor)
+	public <P, R> R accept(CSharpElementVisitor<P, R> visitor, P p)
 	{
-		visitor.visitLabeledStatement(this);
+		return visitor.visitLabeledStatement(this, p);
 	}
 
 	@NotNull

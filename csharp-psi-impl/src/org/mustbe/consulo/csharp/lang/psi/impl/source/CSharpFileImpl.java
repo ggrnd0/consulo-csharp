@@ -19,9 +19,9 @@ package org.mustbe.consulo.csharp.lang.psi.impl.source;
 import org.jetbrains.annotations.NotNull;
 import org.mustbe.consulo.csharp.lang.CSharpFileType;
 import org.mustbe.consulo.csharp.lang.CSharpLanguage;
-import org.mustbe.consulo.csharp.lang.psi.CSharpElementVisitor;
+import org.mustbe.consulo.csharp.lang.psi.CSharpElementVisitorVoid;
+import org.mustbe.consulo.csharp.lang.psi.CSharpFile;
 import org.mustbe.consulo.csharp.lang.psi.CSharpStubElements;
-import org.mustbe.consulo.dotnet.psi.DotNetFile;
 import org.mustbe.consulo.dotnet.psi.DotNetNamedElement;
 import org.mustbe.consulo.dotnet.psi.DotNetQualifiedElement;
 import com.intellij.extapi.psi.PsiFileBase;
@@ -36,7 +36,7 @@ import com.intellij.util.IncorrectOperationException;
  * @author VISTALL
  * @since 28.11.13.
  */
-public class CSharpFileImpl extends PsiFileBase implements DotNetFile
+public class CSharpFileImpl extends PsiFileBase implements CSharpFile
 {
 	public CSharpFileImpl(@NotNull FileViewProvider viewProvider)
 	{
@@ -60,9 +60,9 @@ public class CSharpFileImpl extends PsiFileBase implements DotNetFile
 	@Override
 	public void accept(@NotNull PsiElementVisitor visitor)
 	{
-		if(visitor instanceof CSharpElementVisitor)
+		if(visitor instanceof CSharpElementVisitorVoid)
 		{
-			((CSharpElementVisitor) visitor).visitCSharpFile(this);
+			((CSharpElementVisitorVoid) visitor).visitCSharpFile(this);
 		}
 		else
 		{

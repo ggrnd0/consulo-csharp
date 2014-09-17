@@ -18,7 +18,7 @@ package org.mustbe.consulo.csharp.lang.psi.impl.msil;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.mustbe.consulo.csharp.lang.psi.CSharpElementVisitor;
+import org.mustbe.consulo.csharp.lang.psi.CSharpElementVisitorVoid;
 import org.mustbe.consulo.csharp.lang.psi.CSharpEnumConstantDeclaration;
 import org.mustbe.consulo.dotnet.psi.DotNetVariable;
 import org.mustbe.consulo.msil.lang.psi.MsilFieldEntry;
@@ -39,9 +39,9 @@ public class MsilFieldAsCSharpEnumConstantDeclaration extends MsilVariableAsCSha
 	@Override
 	public void accept(@NotNull PsiElementVisitor visitor)
 	{
-		if(visitor instanceof CSharpElementVisitor)
+		if(visitor instanceof CSharpElementVisitorVoid)
 		{
-			((CSharpElementVisitor) visitor).visitEnumConstantDeclaration(this);
+			((CSharpElementVisitorVoid) visitor).visitEnumConstantDeclaration(this);
 		}
 		else
 		{

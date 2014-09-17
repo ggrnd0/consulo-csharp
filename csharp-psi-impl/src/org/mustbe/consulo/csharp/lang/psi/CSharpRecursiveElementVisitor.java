@@ -22,7 +22,7 @@ import com.intellij.psi.PsiElement;
  * @author VISTALL
  * @since 30.11.13.
  */
-public class CSharpRecursiveElementVisitor extends CSharpElementVisitor
+public class CSharpRecursiveElementVisitor extends CSharpElementVisitorVoid
 {
 	@Override
 	public void visitElement(PsiElement element)

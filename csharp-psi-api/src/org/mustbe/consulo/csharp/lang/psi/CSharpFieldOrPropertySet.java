@@ -18,14 +18,13 @@ package org.mustbe.consulo.csharp.lang.psi;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.mustbe.consulo.dotnet.psi.DotNetElement;
 import org.mustbe.consulo.dotnet.psi.DotNetExpression;
 
 /**
  * @author VISTALL
  * @since 29.12.13.
  */
-public interface CSharpFieldOrPropertySet extends DotNetElement
+public interface CSharpFieldOrPropertySet extends CSharpElement
 {
 	@NotNull
 	CSharpReferenceExpression getNameReferenceExpression();

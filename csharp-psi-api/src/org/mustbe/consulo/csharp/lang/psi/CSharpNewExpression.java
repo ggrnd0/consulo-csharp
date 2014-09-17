@@ -17,14 +17,13 @@
 package org.mustbe.consulo.csharp.lang.psi;
 
 import org.jetbrains.annotations.Nullable;
-import org.mustbe.consulo.dotnet.psi.DotNetExpression;
 import org.mustbe.consulo.dotnet.psi.DotNetType;
 
 /**
  * @author VISTALL
  * @since 29.12.13.
  */
-public interface CSharpNewExpression extends DotNetExpression, CSharpCallArgumentListOwner
+public interface CSharpNewExpression extends CSharpExpression, CSharpCallArgumentListOwner
 {
 	@Nullable
 	DotNetType getNewType();

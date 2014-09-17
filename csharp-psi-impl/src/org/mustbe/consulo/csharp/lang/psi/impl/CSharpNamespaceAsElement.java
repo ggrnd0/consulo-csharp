@@ -24,7 +24,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.mustbe.consulo.csharp.lang.CSharpLanguage;
 import org.mustbe.consulo.csharp.lang.psi.impl.msil.MsilWrapperProcessor;
-import org.mustbe.consulo.csharp.lang.psi.impl.source.CSharpUsingListImpl;
+import org.mustbe.consulo.csharp.lang.psi.impl.source.CSharpUsingNamespaceListImpl;
 import org.mustbe.consulo.csharp.lang.psi.impl.source.resolve.util.CSharpResolveUtil;
 import org.mustbe.consulo.csharp.lang.psi.impl.stub.index.CSharpIndexKeys;
 import org.mustbe.consulo.csharp.lang.psi.impl.stub.index.NamespaceByQNameIndex;
@@ -180,10 +180,10 @@ public class CSharpNamespaceAsElement extends LightElement implements DotNetName
 				@NotNull final PsiElement place)
 		{
 			return StubIndex.getInstance().processElements(CSharpIndexKeys.USING_LIST_INDEX, CSharpNamespaceHelper.toString(qualifiedName), project,
-					scope, CSharpUsingListImpl.class, new Processor<CSharpUsingListImpl>()
+					scope, CSharpUsingNamespaceListImpl.class, new Processor<CSharpUsingNamespaceListImpl>()
 			{
 				@Override
-				public boolean process(CSharpUsingListImpl usingList)
+				public boolean process(CSharpUsingNamespaceListImpl usingList)
 				{
 					return usingList.processDeclarations(processor, state, lastParent, place);
 				}

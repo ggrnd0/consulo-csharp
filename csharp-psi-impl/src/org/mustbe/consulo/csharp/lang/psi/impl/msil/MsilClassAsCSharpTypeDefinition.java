@@ -23,7 +23,7 @@ import java.util.List;
 import org.jetbrains.annotations.NonNls;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.mustbe.consulo.csharp.lang.psi.CSharpElementVisitor;
+import org.mustbe.consulo.csharp.lang.psi.CSharpElementVisitorVoid;
 import org.mustbe.consulo.csharp.lang.psi.CSharpGenericConstraint;
 import org.mustbe.consulo.csharp.lang.psi.CSharpGenericConstraintList;
 import org.mustbe.consulo.csharp.lang.psi.CSharpTypeDeclaration;
@@ -222,9 +222,9 @@ public class MsilClassAsCSharpTypeDefinition extends MsilElementWrapper<MsilClas
 	@Override
 	public void accept(@NotNull PsiElementVisitor visitor)
 	{
-		if(visitor instanceof CSharpElementVisitor)
+		if(visitor instanceof CSharpElementVisitorVoid)
 		{
-			((CSharpElementVisitor) visitor).visitTypeDeclaration(this);
+			((CSharpElementVisitorVoid) visitor).visitTypeDeclaration(this);
 		}
 		else
 		{

@@ -17,13 +17,12 @@
 package org.mustbe.consulo.csharp.lang.psi;
 
 import org.jetbrains.annotations.NotNull;
-import org.mustbe.consulo.dotnet.psi.DotNetElement;
 
 /**
  * @author VISTALL
  * @since 17.05.14
  */
-public interface CSharpGenericConstraintList extends DotNetElement
+public interface CSharpGenericConstraintList extends CSharpElement
 {
 	@NotNull
 	CSharpGenericConstraint[] getGenericConstraints();

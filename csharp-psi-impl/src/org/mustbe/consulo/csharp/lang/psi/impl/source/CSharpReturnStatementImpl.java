@@ -19,15 +19,15 @@ package org.mustbe.consulo.csharp.lang.psi.impl.source;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.mustbe.consulo.csharp.lang.psi.CSharpElementVisitor;
+import org.mustbe.consulo.csharp.lang.psi.CSharpReturnStatement;
 import org.mustbe.consulo.dotnet.psi.DotNetExpression;
-import org.mustbe.consulo.dotnet.psi.DotNetStatement;
 import com.intellij.lang.ASTNode;
 
 /**
  * @author VISTALL
  * @since 30.12.13.
  */
-public class CSharpReturnStatementImpl extends CSharpElementImpl implements DotNetStatement
+public class CSharpReturnStatementImpl extends CSharpElementImpl implements CSharpReturnStatement
 {
 	public CSharpReturnStatementImpl(@NotNull ASTNode node)
 	{
@@ -41,8 +41,8 @@ public class CSharpReturnStatementImpl extends CSharpElementImpl implements DotN
 	}
 
 	@Override
-	public void accept(@NotNull CSharpElementVisitor visitor)
+	public <P, R> R accept(CSharpElementVisitor<P, R> visitor, P p)
 	{
-		visitor.visitReturnStatement(this);
+		return visitor.visitReturnStatement(this, p);
 	}
 }

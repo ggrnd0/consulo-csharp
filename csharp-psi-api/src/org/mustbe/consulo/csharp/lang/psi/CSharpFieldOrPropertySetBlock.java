@@ -17,13 +17,12 @@
 package org.mustbe.consulo.csharp.lang.psi;
 
 import org.jetbrains.annotations.NotNull;
-import org.mustbe.consulo.dotnet.psi.DotNetElement;
 
 /**
  * @author VISTALL
  * @since 29.12.13.
  */
-public interface CSharpFieldOrPropertySetBlock extends DotNetElement
+public interface CSharpFieldOrPropertySetBlock extends CSharpElement
 {
 	@NotNull
 	CSharpFieldOrPropertySet[] getSets();

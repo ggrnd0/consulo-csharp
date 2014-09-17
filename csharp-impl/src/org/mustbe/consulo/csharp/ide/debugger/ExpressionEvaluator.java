@@ -16,7 +16,7 @@
 
 package org.mustbe.consulo.csharp.ide.debugger;
 
-import org.mustbe.consulo.csharp.lang.psi.CSharpElementVisitor;
+import org.mustbe.consulo.csharp.lang.psi.CSharpElementVisitorVoid;
 import org.mustbe.consulo.csharp.lang.psi.impl.source.CSharpReferenceExpressionImpl;
 import com.intellij.openapi.util.Comparing;
 import com.intellij.psi.PsiElement;
@@ -29,7 +29,7 @@ import mono.debugger.StackFrameMirror;
  * @author VISTALL
  * @since 06.06.14
  */
-public class ExpressionEvaluator extends CSharpElementVisitor
+public class ExpressionEvaluator extends CSharpElementVisitorVoid
 {
 	private final StackFrameMirror myMirror;
 

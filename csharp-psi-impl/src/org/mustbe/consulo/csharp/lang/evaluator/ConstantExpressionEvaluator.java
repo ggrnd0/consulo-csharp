@@ -17,7 +17,7 @@
 package org.mustbe.consulo.csharp.lang.evaluator;
 
 import org.jetbrains.annotations.Nullable;
-import org.mustbe.consulo.csharp.lang.psi.CSharpElementVisitor;
+import org.mustbe.consulo.csharp.lang.psi.CSharpElementVisitorVoid;
 import org.mustbe.consulo.csharp.lang.psi.impl.source.CSharpConstantExpressionImpl;
 import org.mustbe.consulo.dotnet.psi.DotNetExpression;
 
@@ -25,7 +25,7 @@ import org.mustbe.consulo.dotnet.psi.DotNetExpression;
  * @author VISTALL
  * @since 28.08.14
  */
-public class ConstantExpressionEvaluator extends CSharpElementVisitor
+public class ConstantExpressionEvaluator extends CSharpElementVisitorVoid
 {
 	private Object myValue;
 

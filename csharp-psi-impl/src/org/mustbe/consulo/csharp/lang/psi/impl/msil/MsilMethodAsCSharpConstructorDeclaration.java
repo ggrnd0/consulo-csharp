@@ -19,7 +19,7 @@ package org.mustbe.consulo.csharp.lang.psi.impl.msil;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.mustbe.consulo.csharp.lang.psi.CSharpConstructorDeclaration;
-import org.mustbe.consulo.csharp.lang.psi.CSharpElementVisitor;
+import org.mustbe.consulo.csharp.lang.psi.CSharpElementVisitorVoid;
 import org.mustbe.consulo.dotnet.DotNetTypes;
 import org.mustbe.consulo.dotnet.lang.psi.impl.source.resolve.type.DotNetTypeRefByQName;
 import org.mustbe.consulo.dotnet.psi.DotNetGenericParameter;
@@ -54,9 +54,9 @@ public class MsilMethodAsCSharpConstructorDeclaration extends MsilMethodAsCSharp
 	@Override
 	public void accept(@NotNull PsiElementVisitor visitor)
 	{
-		if(visitor instanceof CSharpElementVisitor)
+		if(visitor instanceof CSharpElementVisitorVoid)
 		{
-			((CSharpElementVisitor) visitor).visitConstructorDeclaration(this);
+			((CSharpElementVisitorVoid) visitor).visitConstructorDeclaration(this);
 		}
 		else
 		{

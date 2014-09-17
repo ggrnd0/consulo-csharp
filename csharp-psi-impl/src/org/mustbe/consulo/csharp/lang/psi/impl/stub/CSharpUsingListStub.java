@@ -18,7 +18,7 @@ package org.mustbe.consulo.csharp.lang.psi.impl.stub;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.mustbe.consulo.csharp.lang.psi.impl.source.CSharpUsingListImpl;
+import org.mustbe.consulo.csharp.lang.psi.impl.source.CSharpUsingNamespaceListImpl;
 import com.intellij.psi.stubs.IStubElementType;
 import com.intellij.psi.stubs.StubBase;
 import com.intellij.psi.stubs.StubElement;
@@ -28,7 +28,7 @@ import com.intellij.util.io.StringRef;
  * @author VISTALL
  * @since 15.01.14
  */
-public class CSharpUsingListStub extends StubBase<CSharpUsingListImpl>
+public class CSharpUsingListStub extends StubBase<CSharpUsingNamespaceListImpl>
 {
 	private final StringRef myParentQName;
 

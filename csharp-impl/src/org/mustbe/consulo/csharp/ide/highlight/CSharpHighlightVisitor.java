@@ -78,7 +78,7 @@ import com.intellij.xml.util.XmlStringUtil;
  * @author VISTALL
  * @since 28.11.13.
  */
-public class CSharpHighlightVisitor extends CSharpElementVisitor implements HighlightVisitor
+public class CSharpHighlightVisitor extends CSharpElementVisitorVoid implements HighlightVisitor
 {
 	public static class ResolveError
 	{

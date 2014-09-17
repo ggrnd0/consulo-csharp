@@ -19,7 +19,6 @@ package org.mustbe.consulo.csharp.lang.psi;
 import org.consulo.lombok.annotations.ArrayFactoryFields;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.mustbe.consulo.dotnet.psi.DotNetElement;
 import org.mustbe.consulo.dotnet.psi.DotNetGenericParameter;
 
 /**
@@ -27,7 +26,7 @@ import org.mustbe.consulo.dotnet.psi.DotNetGenericParameter;
  * @since 17.05.14
  */
 @ArrayFactoryFields
-public interface CSharpGenericConstraint extends DotNetElement
+public interface CSharpGenericConstraint extends CSharpElement
 {
 	@Nullable
 	DotNetGenericParameter resolve();
