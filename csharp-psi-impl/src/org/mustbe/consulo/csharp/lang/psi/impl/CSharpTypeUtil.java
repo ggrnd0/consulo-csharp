@@ -24,6 +24,7 @@ import org.mustbe.consulo.csharp.lang.psi.impl.source.resolve.type.CSharpLambdaT
 import org.mustbe.consulo.csharp.lang.psi.impl.source.resolve.type.CSharpRefTypeRef;
 import org.mustbe.consulo.dotnet.DotNetTypes;
 import org.mustbe.consulo.dotnet.lang.psi.impl.source.resolve.type.DotNetGenericWrapperTypeRef;
+import org.mustbe.consulo.dotnet.psi.DotNetGenericParameter;
 import org.mustbe.consulo.dotnet.psi.DotNetTypeDeclaration;
 import org.mustbe.consulo.dotnet.resolve.DotNetGenericExtractor;
 import org.mustbe.consulo.dotnet.resolve.DotNetTypeRef;
@@ -31,6 +32,7 @@ import org.mustbe.consulo.dotnet.resolve.DotNetTypeRefWithInnerTypeRef;
 import com.intellij.openapi.util.Pair;
 import com.intellij.psi.PsiElement;
 import com.intellij.util.ArrayUtil;
+import lombok.val;
 
 /**
  * @author VISTALL
@@ -167,8 +169,48 @@ public class CSharpTypeUtil
 			return targetReturnType == DotNetTypeRef.AUTO_TYPE || isInheritable(topReturnType, targetReturnType, scope);
 		}
 
-		PsiElement topElement = top.resolve(scope);
 		PsiElement targetElement = target.resolve(scope);
+		PsiElement topElement = top.resolve(scope);
+		if(top instanceof DotNetGenericWrapperTypeRef && topElement instanceof DotNetTypeDeclaration)
+		{
+			DotNetTypeDeclaration topTypeDeclaration = (DotNetTypeDeclaration) topElement;
+			val typeInSuper = CSharpTypeUtil.findTypeInSuper(target, topTypeDeclaration.getVmQName(), scope);
+
+			if(typeInSuper == null)
+			{
+				return false;
+			}
+
+			if(!isEquivalent(typeInSuper.getFirst(), targetElement))
+			{
+				return false;
+			}
+
+			DotNetGenericExtractor targetExtractor = typeInSuper.getSecond();
+
+			DotNetTypeRef[] topArguments = ((DotNetGenericWrapperTypeRef) top).getArgumentTypeRefs();
+
+			DotNetGenericParameter[] topGenericParameters = topTypeDeclaration.getGenericParameters();
+
+			assert topArguments.length == topGenericParameters.length;
+
+			for(int i = 0; i < topGenericParameters.length; i++)
+			{
+				DotNetGenericParameter topGenericParameter = topGenericParameters[i];
+				DotNetTypeRef targetExtractedTypeRef = targetExtractor.extract(topGenericParameter);
+				if(targetExtractedTypeRef == null || !isInheritable(topArguments[i], targetExtractedTypeRef, scope))
+				{
+					return false;
+				}
+			}
+			return true;
+		}
+
+		return isEquivalent(topElement, targetElement);
+	}
+
+	private static boolean isEquivalent(@Nullable PsiElement topElement, @Nullable PsiElement targetElement)
+	{
 		if(topElement != null && topElement.isEquivalentTo(targetElement))
 		{
 			return true;
@@ -178,7 +220,6 @@ public class CSharpTypeUtil
 		{
 			return ((DotNetTypeDeclaration) targetElement).isInheritor((DotNetTypeDeclaration) topElement, true);
 		}
-
 		return false;
 	}
 
